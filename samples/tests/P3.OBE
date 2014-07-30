@@ -1,0 +1,10 @@
+module Programa2;
+var a, b, c : integer;
+begin
+	a := 2;
+	b := 4 + 4 + a;
+	c := a + b;
+	writeln(a);
+	writeln(b);
+	writeln(c);
+end Programa2.

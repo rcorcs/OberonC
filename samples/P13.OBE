@@ -1,0 +1,19 @@
+module Programa10;
+var a, b : integer;
+
+procedure swap();
+var x, y : integer;
+begin 
+	x := b;
+	y := a;
+	a := x;
+	b := y;
+end swap;
+
+begin
+	a := 2;
+	b := 7;
+	swap();
+	writeln( a );
+	writeln( b );
+end Programa10.

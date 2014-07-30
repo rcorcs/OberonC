@@ -1,0 +1,14 @@
+module Programa8;
+var a, b : integer;
+
+begin
+	write("Digite um numero: ");
+	read(a);
+	if(a>10) then
+		b := 1;
+	else
+		b := 2;
+	end;
+	writeln(a);
+	writeln(b);
+end Programa8.

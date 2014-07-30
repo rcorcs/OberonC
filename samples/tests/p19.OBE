@@ -1,0 +1,14 @@
+module Programa9;
+var a, b : boolean;
+
+begin
+	a := true;
+	b := ( a and ( not a ));
+	
+	if ( a or b ) then
+		writeln("true");
+	else
+		writeln("false");
+	end;
+	
+end Programa9.

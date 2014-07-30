@@ -1,0 +1,19 @@
+module Programa5;
+var a, b : integer;
+
+function factorial( val: integer) : integer;
+begin
+	if( val <= 1 ) then
+		return 1;
+	else 
+		return( val * factorial(val-1) );
+	end;
+end factorial;
+
+begin
+	write("Digite um numero: ");
+	read(b);
+	a := factorial(b);
+	write("fatorial: ");
+	writeln(a);
+end Programa5.

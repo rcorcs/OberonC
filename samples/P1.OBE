@@ -1,0 +1,8 @@
+module Programa1;
+var a, b : integer;
+
+begin
+	a := 77;
+	b := a;
+	writeln(b);
+end Programa1.

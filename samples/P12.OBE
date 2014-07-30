@@ -1,0 +1,15 @@
+module Programa10;
+var a : integer;
+
+procedure println();
+var x : integer;
+begin 
+	x := 2;
+	writeln(x);
+end println;
+
+begin
+	//write("Digite um numero: ");
+	//read( a );
+	println();
+end Programa10.

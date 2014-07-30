@@ -1,0 +1,16 @@
+module Programa9;
+var a, b : integer;
+
+begin
+	write("Digite um numero: ");
+	read(a);
+	
+	while ( a >= 0) do
+		a := a - 1;
+		if( a = 2 ) then
+			continue;
+		end;
+		writeln(a);
+	end;
+
+end Programa9.

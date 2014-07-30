@@ -1,0 +1,59 @@
+module Programa29;
+
+function lerValor(): Integer;
+
+Var
+   v: Integer;
+
+Begin
+
+  read(v);
+  return v;
+
+End lerValor;
+
+procedure gerarValores();
+var
+ numInicial, numFinal: Integer;
+ numParada, numIgnorado: Integer;
+ i : Integer;
+begin
+  
+  repeat
+
+     write("Inicial: "); 
+     read(numInicial);
+
+     write("Final: "); 
+     read(numFinal);
+
+     write("Interromper se encontrar: "); 
+     read(numParada);
+
+     write("Ignorar se encontrar: ");
+     read(numIgnorado);
+ 
+     for i := numInicial To numFinal Do
+   
+        if i = numParada then
+          break;
+        elsif i = numIgnorado then
+          continue;
+        else
+          writeln(i);
+        end;
+    end;
+    
+    write("Repetir? (0 = Nao) : ");
+  until lerValor() = 0;
+
+end gerarValores;
+
+
+
+Begin
+ 
+  gerarValores();
+
+end Programa29.
+

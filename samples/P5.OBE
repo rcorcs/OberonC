@@ -1,0 +1,20 @@
+module Programa5;
+var a, b, c, d, e : integer;
+
+procedure P1();
+begin
+	a := 2;
+	b := 4 + 4 + a;
+	c := a + b;
+	d := c / 4;
+	E := c * 4;
+end P1;
+
+begin
+	P1();
+	writeln(a);
+	writeln(b);
+	writeln(c);
+	writeln(d);
+	writeln(E);
+end Programa5.

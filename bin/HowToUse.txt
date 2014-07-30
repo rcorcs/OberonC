@@ -1,0 +1,22 @@
+oberonc.exe is the compiler executable.
+It generates an assembly file compiled from the source code.
+
+After oberonc has generated the assembly file, you execute
+the GNU Assembler (GAS, as) to generate the object file and then
+execute the GNU Linker ( ld ) to create the executable file of 
+your program.
+
+The batches intend to simplify these steps.
+
+Once you've created the assembly file, you can
+just execute the assemble.cmd and type the 
+name of the assembly file, without the extension (.s) .
+
+The build.cmd do all the steps. It means that you
+can just execute the build.cmd and type the name
+of the source file, without the extension (.obe),
+and it will call the compiler, the assembler and
+the linker.
+
+
+Copyright 2011 ROCHA, Rodrigo C. O.

@@ -1,0 +1,113 @@
+module Programa25;
+var
+N1, N2, N3, N4: Integer;
+useAbs: Integer;
+
+procedure readNumbers(minValue, maxValue: Integer);
+var
+ hasN3, hasN4:Boolean;
+begin
+  
+  repeat
+
+    write("N1 (");
+    write(minValue);
+    write(" <= N1 <=");
+    write(maxValue);
+    write(") :");
+
+    read(N1);
+  until (N1 >= minValue AND N1 <= maxValue);
+
+    write("N2 (");
+    write(minValue);
+    write(" <= N2 <=");
+    write(maxValue);
+    write(") :");
+
+  read(N2);
+   
+  while(N2 < minValue OR N2 > maxValue) do
+    write("N2 (");
+    write(minValue);
+    write(" <= N2 <=");
+    write(maxValue);
+    write(") :");
+    read(N2);
+  end;
+  
+  hasN3 := false; 
+  hasN4 := hasN3;
+
+  while(not hasN3) do
+    write("N3 (");
+    write(minValue);
+    write(" <= N3 <=");
+    write(maxValue);
+    write(") :");
+
+    read(N3);
+   
+    if (N3 >= minValue AND N3 <= maxValue) then
+      hasN3 := true;
+    end;
+
+  end;
+
+
+  while(not hasN4) do
+    write("N4 (");
+    write(minValue);
+    write(" <= N4 <=");
+    write(maxValue);
+    write(") :");
+
+    read(N4);
+   
+    if (N4 >= minValue AND N4 <= maxValue) then
+      hasN4 := true;
+    end;
+
+  end;
+
+end readNumbers;
+
+function abs(V: Integer): Integer;
+begin
+
+  if v < 0 then 
+   return -v;
+  else
+   return v;
+  end;
+
+end abs;
+
+function getSum(useAbs: Boolean): Integer;
+var 
+  R: integer;
+begin
+   
+   if useAbs then
+    r := abs(N1) + abs(N2) + abs(N3) + abs(N4);
+   else
+    r := N1 + N2 + N3 + N4;
+   end;
+
+   return R;
+
+end getSum;
+ 
+
+begin
+
+  readNumbers(-100, 100);
+
+  writeln("use abs?\n1- yes\n2 - no");
+
+  read(useAbs);
+  write("Soma = ");
+  writeln(getSum( useAbs = 1 ));
+
+
+end Programa25. 

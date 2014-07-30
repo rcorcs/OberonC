@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="OberonC" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Release">
+				<Option output="bin\OberonC" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="source\ast\declaration\constant_list_node.cpp" />
+		<Unit filename="source\ast\declaration\constant_list_node.h" />
+		<Unit filename="source\ast\declaration\constant_node.cpp" />
+		<Unit filename="source\ast\declaration\constant_node.h" />
+		<Unit filename="source\ast\declaration\declaration_node.cpp" />
+		<Unit filename="source\ast\declaration\declaration_node.h" />
+		<Unit filename="source\ast\declaration\declaration_sequence_node.cpp" />
+		<Unit filename="source\ast\declaration\declaration_sequence_node.h" />
+		<Unit filename="source\ast\declaration\formal_parameter_list_node.cpp" />
+		<Unit filename="source\ast\declaration\formal_parameter_list_node.h" />
+		<Unit filename="source\ast\declaration\formal_parameter_node.cpp" />
+		<Unit filename="source\ast\declaration\formal_parameter_node.h" />
+		<Unit filename="source\ast\declaration\function_node.cpp" />
+		<Unit filename="source\ast\declaration\function_node.h" />
+		<Unit filename="source\ast\declaration\module_node.cpp" />
+		<Unit filename="source\ast\declaration\module_node.h" />
+		<Unit filename="source\ast\declaration\skip_declaration_node.cpp" />
+		<Unit filename="source\ast\declaration\skip_declaration_node.h" />
+		<Unit filename="source\ast\declaration\variable_list_node.cpp" />
+		<Unit filename="source\ast\declaration\variable_list_node.h" />
+		<Unit filename="source\ast\declaration\variable_node.cpp" />
+		<Unit filename="source\ast\declaration\variable_node.h" />
+		<Unit filename="source\ast\expression\actual_parameter_list_node.h" />
+		<Unit filename="source\ast\expression\actual_parameters_list_node.cpp" />
+		<Unit filename="source\ast\expression\and_node.cpp" />
+		<Unit filename="source\ast\expression\and_node.h" />
+		<Unit filename="source\ast\expression\arithmetic_node.cpp" />
+		<Unit filename="source\ast\expression\arithmetic_node.h" />
+		<Unit filename="source\ast\expression\arithmetic_operator.cpp" />
+		<Unit filename="source\ast\expression\arithmetic_operator.h" />
+		<Unit filename="source\ast\expression\boolean_literal_node.cpp" />
+		<Unit filename="source\ast\expression\boolean_literal_node.h" />
+		<Unit filename="source\ast\expression\expression_node.cpp" />
+		<Unit filename="source\ast\expression\expression_node.h" />
+		<Unit filename="source\ast\expression\function_call_node.cpp" />
+		<Unit filename="source\ast\expression\function_call_node.h" />
+		<Unit filename="source\ast\expression\identifier_node.cpp" />
+		<Unit filename="source\ast\expression\identifier_node.h" />
+		<Unit filename="source\ast\expression\integer_literal_node.cpp" />
+		<Unit filename="source\ast\expression\integer_literal_node.h" />
+		<Unit filename="source\ast\expression\negation_node.cpp" />
+		<Unit filename="source\ast\expression\negation_node.h" />
+		<Unit filename="source\ast\expression\not_node.cpp" />
+		<Unit filename="source\ast\expression\not_node.h" />
+		<Unit filename="source\ast\expression\or_node.cpp" />
+		<Unit filename="source\ast\expression\or_node.h" />
+		<Unit filename="source\ast\expression\relational_node.cpp" />
+		<Unit filename="source\ast\expression\relational_node.h" />
+		<Unit filename="source\ast\expression\relational_operator.cpp" />
+		<Unit filename="source\ast\expression\relational_operator.h" />
+		<Unit filename="source\ast\expression\string_literal_node.cpp" />
+		<Unit filename="source\ast\expression\string_literal_node.h" />
+		<Unit filename="source\ast\node.cpp" />
+		<Unit filename="source\ast\node.h" />
+		<Unit filename="source\ast\statement\assignment_node.cpp" />
+		<Unit filename="source\ast\statement\assignment_node.h" />
+		<Unit filename="source\ast\statement\break_node.cpp" />
+		<Unit filename="source\ast\statement\break_node.h" />
+		<Unit filename="source\ast\statement\conditional_node.cpp" />
+		<Unit filename="source\ast\statement\conditional_node.h" />
+		<Unit filename="source\ast\statement\continue_node.cpp" />
+		<Unit filename="source\ast\statement\continue_node.h" />
+		<Unit filename="source\ast\statement\for_loop_node.cpp" />
+		<Unit filename="source\ast\statement\for_loop_node.h" />
+		<Unit filename="source\ast\statement\loop_node.cpp" />
+		<Unit filename="source\ast\statement\loop_node.h" />
+		<Unit filename="source\ast\statement\post_test_loop_node.cpp" />
+		<Unit filename="source\ast\statement\post_test_loop_node.h" />
+		<Unit filename="source\ast\statement\pre_test_loop_node.cpp" />
+		<Unit filename="source\ast\statement\pre_test_loop_node.h" />
+		<Unit filename="source\ast\statement\procedure_call_node.cpp" />
+		<Unit filename="source\ast\statement\procedure_call_node.h" />
+		<Unit filename="source\ast\statement\read_node.cpp" />
+		<Unit filename="source\ast\statement\read_node.h" />
+		<Unit filename="source\ast\statement\return_node.cpp" />
+		<Unit filename="source\ast\statement\return_node.h" />
+		<Unit filename="source\ast\statement\skip_statement_node.cpp" />
+		<Unit filename="source\ast\statement\skip_statement_node.h" />
+		<Unit filename="source\ast\statement\statement_node.cpp" />
+		<Unit filename="source\ast\statement\statement_node.h" />
+		<Unit filename="source\ast\statement\statement_sequence_node.cpp" />
+		<Unit filename="source\ast\statement\statement_sequence_node.h" />
+		<Unit filename="source\ast\statement\write_line_node.cpp" />
+		<Unit filename="source\ast\statement\write_line_node.h" />
+		<Unit filename="source\ast\statement\write_node.cpp" />
+		<Unit filename="source\ast\statement\write_node.h" />
+		<Unit filename="source\code_generator\code_generator_exception.cpp" />
+		<Unit filename="source\code_generator\code_generator_exception.h" />
+		<Unit filename="source\code_generator\intermediate\instruction\arithmetic_instruction.cpp" />
+		<Unit filename="source\code_generator\intermediate\instruction\arithmetic_instruction.h" />
+		<Unit filename="source\code_generator\intermediate\instruction\call_instruction.cpp" />
+		<Unit filename="source\code_generator\intermediate\instruction\call_instruction.h" />
+		<Unit filename="source\code_generator\intermediate\instruction\conditional_goto_instruction.cpp" />
+		<Unit filename="source\code_generator\intermediate\instruction\conditional_goto_instruction.h" />
+		<Unit filename="source\code_generator\intermediate\instruction\copy_instruction.cpp" />
+		<Unit filename="source\code_generator\intermediate\instruction\copy_instruction.h" />
+		<Unit filename="source\code_generator\intermediate\instruction\goto_instruction.cpp" />
+		<Unit filename="source\code_generator\intermediate\instruction\goto_instruction.h" />
+		<Unit filename="source\code_generator\intermediate\instruction\instruction.cpp" />
+		<Unit filename="source\code_generator\intermediate\instruction\instruction.h" />
+		<Unit filename="source\code_generator\intermediate\instruction\negation_instruction.cpp" />
+		<Unit filename="source\code_generator\intermediate\instruction\negation_instruction.h" />
+		<Unit filename="source\code_generator\intermediate\instruction\nop_instruction.cpp" />
+		<Unit filename="source\code_generator\intermediate\instruction\nop_instruction.h" />
+		<Unit filename="source\code_generator\intermediate\instruction\parameter_instruction.cpp" />
+		<Unit filename="source\code_generator\intermediate\instruction\parameter_instruction.h" />
+		<Unit filename="source\code_generator\intermediate\instruction\read_instruction.cpp" />
+		<Unit filename="source\code_generator\intermediate\instruction\read_instruction.h" />
+		<Unit filename="source\code_generator\intermediate\instruction\return_instruction.cpp" />
+		<Unit filename="source\code_generator\intermediate\instruction\return_instruction.h" />
+		<Unit filename="source\code_generator\intermediate\instruction\write_instruction.cpp" />
+		<Unit filename="source\code_generator\intermediate\instruction\write_instruction.h" />
+		<Unit filename="source\code_generator\intermediate\instruction_argument\argument_information.cpp" />
+		<Unit filename="source\code_generator\intermediate\instruction_argument\argument_information.h" />
+		<Unit filename="source\code_generator\intermediate\instruction_argument\function_label.cpp" />
+		<Unit filename="source\code_generator\intermediate\instruction_argument\function_label.h" />
+		<Unit filename="source\code_generator\intermediate\instruction_argument\identifier_argument.cpp" />
+		<Unit filename="source\code_generator\intermediate\instruction_argument\identifier_argument.h" />
+		<Unit filename="source\code_generator\intermediate\instruction_argument\immediate_argument.cpp" />
+		<Unit filename="source\code_generator\intermediate\instruction_argument\immediate_argument.h" />
+		<Unit filename="source\code_generator\intermediate\instruction_argument\instruction_argument.cpp" />
+		<Unit filename="source\code_generator\intermediate\instruction_argument\instruction_argument.h" />
+		<Unit filename="source\code_generator\intermediate\instruction_argument\instruction_label.cpp" />
+		<Unit filename="source\code_generator\intermediate\instruction_argument\instruction_label.h" />
+		<Unit filename="source\code_generator\intermediate\instruction_argument\label_argument.cpp" />
+		<Unit filename="source\code_generator\intermediate\instruction_argument\label_argument.h" />
+		<Unit filename="source\code_generator\intermediate\instruction_argument\string_argument.cpp" />
+		<Unit filename="source\code_generator\intermediate\instruction_argument\string_argument.h" />
+		<Unit filename="source\code_generator\intermediate\instruction_argument\temporary_argument.cpp" />
+		<Unit filename="source\code_generator\intermediate\instruction_argument\temporary_argument.h" />
+		<Unit filename="source\code_generator\intermediate\intermediate_code.cpp" />
+		<Unit filename="source\code_generator\intermediate\intermediate_code.h" />
+		<Unit filename="source\code_generator\machine\basic_block.cpp" />
+		<Unit filename="source\code_generator\machine\basic_block.h" />
+		<Unit filename="source\code_generator\machine\machine_code.cpp" />
+		<Unit filename="source\code_generator\machine\machine_code.h" />
+		<Unit filename="source\code_generator\machine\register_descriptor.cpp" />
+		<Unit filename="source\code_generator\machine\register_descriptor.h" />
+		<Unit filename="source\code_generator\machine\variable_descriptor.cpp" />
+		<Unit filename="source\code_generator\machine\variable_descriptor.h" />
+		<Unit filename="source\code_generator\machine\x64_architecture.cpp" />
+		<Unit filename="source\code_generator\machine\x64_architecture.h" />
+		<Unit filename="source\code_generator\machine\x86_architecture.cpp" />
+		<Unit filename="source\code_generator\machine\x86_architecture.h" />
+		<Unit filename="source\debugger\debugger.cpp" />
+		<Unit filename="source\debugger\debugger.h" />
+		<Unit filename="source\debugger\debugger_implementations\formatted_ast_debugger.cpp" />
+		<Unit filename="source\debugger\debugger_implementations\formatted_ast_debugger.h" />
+		<Unit filename="source\debugger\debugger_implementations\simple_ast_debugger.cpp" />
+		<Unit filename="source\debugger\debugger_implementations\simple_ast_debugger.h" />
+		<Unit filename="source\debugger\debugger_implementations\simple_code_generator_debugger.cpp" />
+		<Unit filename="source\debugger\debugger_implementations\simple_code_generator_debugger.h" />
+		<Unit filename="source\debugger\debugger_implementations\simple_parser_debugger.cpp" />
+		<Unit filename="source\debugger\debugger_implementations\simple_parser_debugger.h" />
+		<Unit filename="source\debugger\debugger_implementations\simple_scanner_debugger.cpp" />
+		<Unit filename="source\debugger\debugger_implementations\simple_scanner_debugger.h" />
+		<Unit filename="source\debugger\debugger_implementations\simple_semantic_debugger.cpp" />
+		<Unit filename="source\debugger\debugger_implementations\simple_semantic_debugger.h" />
+		<Unit filename="source\debugger\debugger_implementations\simple_symbol_table_debugger.cpp" />
+		<Unit filename="source\debugger\debugger_implementations\simple_symbol_table_debugger.h" />
+		<Unit filename="source\debugger\debugger_interfaces.h" />
+		<Unit filename="source\debugger\debugger_interfaces\ast_debugger.h" />
+		<Unit filename="source\debugger\debugger_interfaces\code_generator_debugger.h" />
+		<Unit filename="source\debugger\debugger_interfaces\parser_debugger.h" />
+		<Unit filename="source\debugger\debugger_interfaces\scanner_debugger.h" />
+		<Unit filename="source\debugger\debugger_interfaces\semantic_debugger.h" />
+		<Unit filename="source\debugger\debugger_interfaces\symbol_table_debugger.h" />
+		<Unit filename="source\debugger\debugger_utils.cpp" />
+		<Unit filename="source\debugger\debugger_utils.h" />
+		<Unit filename="source\global\global.cpp" />
+		<Unit filename="source\global\global.h" />
+		<Unit filename="source\main.cpp" />
+		<Unit filename="source\oberonc\oberonc.cpp" />
+		<Unit filename="source\oberonc\oberonc.h" />
+		<Unit filename="source\oberonc\oberonc_exception.cpp" />
+		<Unit filename="source\oberonc\oberonc_exception.h" />
+		<Unit filename="source\parser\parser.cpp" />
+		<Unit filename="source\parser\parser.h" />
+		<Unit filename="source\parser\parser_exception.cpp" />
+		<Unit filename="source\parser\parser_exception.h" />
+		<Unit filename="source\parser\yy_parser.cpp" />
+		<Unit filename="source\parser\yy_parser.h" />
+		<Unit filename="source\scanner\scanner.cpp" />
+		<Unit filename="source\scanner\scanner.h" />
+		<Unit filename="source\scanner\scanner_exception.cpp" />
+		<Unit filename="source\scanner\scanner_exception.h" />
+		<Unit filename="source\scanner\scanner_lex.cpp" />
+		<Unit filename="source\scanner\token_type.cpp" />
+		<Unit filename="source\scanner\token_type.h" />
+		<Unit filename="source\symbol_table\data_type.cpp" />
+		<Unit filename="source\symbol_table\data_type.h" />
+		<Unit filename="source\symbol_table\identifier_category\constant_information.cpp" />
+		<Unit filename="source\symbol_table\identifier_category\constant_information.h" />
+		<Unit filename="source\symbol_table\identifier_category\formal_parameter_information.cpp" />
+		<Unit filename="source\symbol_table\identifier_category\formal_parameter_information.h" />
+		<Unit filename="source\symbol_table\identifier_category\function_information.cpp" />
+		<Unit filename="source\symbol_table\identifier_category\function_information.h" />
+		<Unit filename="source\symbol_table\identifier_category\identifier_category_type.cpp" />
+		<Unit filename="source\symbol_table\identifier_category\identifier_category_type.h" />
+		<Unit filename="source\symbol_table\identifier_category\module_information.cpp" />
+		<Unit filename="source\symbol_table\identifier_category\module_information.h" />
+		<Unit filename="source\symbol_table\identifier_category\temporary_information.cpp" />
+		<Unit filename="source\symbol_table\identifier_category\temporary_information.h" />
+		<Unit filename="source\symbol_table\identifier_category\variable_information.cpp" />
+		<Unit filename="source\symbol_table\identifier_category\variable_information.h" />
+		<Unit filename="source\symbol_table\identifier_information.cpp" />
+		<Unit filename="source\symbol_table\identifier_information.h" />
+		<Unit filename="source\symbol_table\scope.cpp" />
+		<Unit filename="source\symbol_table\scope.h" />
+		<Unit filename="source\symbol_table\symbol_table.cpp" />
+		<Unit filename="source\symbol_table\symbol_table.h" />
+		<Unit filename="source\util\hash_table.h" />
+		<Unit filename="source\util\integer_hash_table.h" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+			<DoxyBlocks>
+				<comment_style block="0" line="0" />
+				<doxyfile_project />
+				<doxyfile_build />
+				<doxyfile_warnings />
+				<doxyfile_output />
+				<doxyfile_dot />
+				<general />
+			</DoxyBlocks>
+			<envvars />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

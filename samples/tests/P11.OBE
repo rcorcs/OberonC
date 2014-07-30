@@ -1,0 +1,19 @@
+module Programa9;
+var a, b, c : integer;
+
+function somar ( x, y : integer ) :integer;
+begin 
+	return( x + y );
+end somar;
+
+begin
+	write("Digite um numero: ");
+	read( a );
+	write("Digite um numero: ");
+	read( b );
+	
+	c := somar(a, b);
+	
+	write("A soma eh: ");
+	writeln( c );
+end Programa9.

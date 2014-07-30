@@ -1,0 +1,36 @@
+module Programa23;
+var a, b, i : integer;
+    ignore1, ignore2, ignore3, ignore4: integer;
+begin
+
+   write("Inicial: "); 
+   read(a);
+
+   write("Final: ");
+   read(b);
+
+   write("ignorar: ");
+   read(ignore1);
+
+   write("ignorar: ");
+   read(ignore2);
+
+   write("ignorar: ");
+   read(ignore3);
+
+   write("ignorar: ");
+   read(ignore4);
+
+   for i := a To b Do
+
+       if i = ignore1 then continue;
+       elsif i = ignore2 then continue;
+       elsif i = ignore3 then continue;
+       elsif i = ignore4 then continue;
+       end;
+
+       write("i: ");
+       writeln(i);
+   end;
+	
+end Programa23.

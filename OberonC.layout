@@ -1,0 +1,643 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Release" />
+	<File name="source\ast\declaration\constant_list_node.cpp" open="1" top="0" tabpos="6">
+		<Cursor position="744" topLine="0" />
+	</File>
+	<File name="source\ast\declaration\constant_list_node.h" open="1" top="0" tabpos="105">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\declaration\constant_node.cpp" open="1" top="0" tabpos="7">
+		<Cursor position="744" topLine="0" />
+	</File>
+	<File name="source\ast\declaration\constant_node.h" open="1" top="0" tabpos="106">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\declaration\declaration_node.cpp" open="1" top="0" tabpos="9">
+		<Cursor position="744" topLine="0" />
+	</File>
+	<File name="source\ast\declaration\declaration_node.h" open="1" top="0" tabpos="107">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\declaration\declaration_sequence_node.cpp" open="1" top="0" tabpos="8">
+		<Cursor position="744" topLine="0" />
+	</File>
+	<File name="source\ast\declaration\declaration_sequence_node.h" open="1" top="0" tabpos="108">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\declaration\formal_parameter_list_node.cpp" open="1" top="0" tabpos="10">
+		<Cursor position="744" topLine="0" />
+	</File>
+	<File name="source\ast\declaration\formal_parameter_list_node.h" open="1" top="0" tabpos="109">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\declaration\formal_parameter_node.cpp" open="1" top="0" tabpos="11">
+		<Cursor position="744" topLine="0" />
+	</File>
+	<File name="source\ast\declaration\formal_parameter_node.h" open="1" top="0" tabpos="110">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\declaration\function_node.cpp" open="1" top="0" tabpos="12">
+		<Cursor position="744" topLine="0" />
+	</File>
+	<File name="source\ast\declaration\function_node.h" open="1" top="0" tabpos="111">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\declaration\module_node.cpp" open="1" top="0" tabpos="13">
+		<Cursor position="744" topLine="0" />
+	</File>
+	<File name="source\ast\declaration\module_node.h" open="1" top="0" tabpos="112">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\declaration\skip_declaration_node.cpp" open="1" top="0" tabpos="14">
+		<Cursor position="744" topLine="0" />
+	</File>
+	<File name="source\ast\declaration\skip_declaration_node.h" open="1" top="0" tabpos="113">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\declaration\variable_list_node.cpp" open="1" top="0" tabpos="15">
+		<Cursor position="744" topLine="0" />
+	</File>
+	<File name="source\ast\declaration\variable_list_node.h" open="1" top="0" tabpos="114">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\declaration\variable_node.cpp" open="1" top="0" tabpos="16">
+		<Cursor position="744" topLine="0" />
+	</File>
+	<File name="source\ast\declaration\variable_node.h" open="1" top="0" tabpos="115">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\expression\actual_parameter_list_node.h" open="1" top="0" tabpos="116">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\expression\actual_parameters_list_node.cpp" open="1" top="0" tabpos="17">
+		<Cursor position="744" topLine="0" />
+	</File>
+	<File name="source\ast\expression\and_node.cpp" open="1" top="0" tabpos="18">
+		<Cursor position="744" topLine="0" />
+	</File>
+	<File name="source\ast\expression\and_node.h" open="1" top="0" tabpos="117">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\expression\arithmetic_node.cpp" open="1" top="0" tabpos="19">
+		<Cursor position="744" topLine="0" />
+	</File>
+	<File name="source\ast\expression\arithmetic_node.h" open="1" top="0" tabpos="118">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\expression\arithmetic_operator.cpp" open="1" top="0" tabpos="20">
+		<Cursor position="744" topLine="0" />
+	</File>
+	<File name="source\ast\expression\arithmetic_operator.h" open="1" top="0" tabpos="119">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\expression\boolean_literal_node.cpp" open="1" top="0" tabpos="21">
+		<Cursor position="744" topLine="0" />
+	</File>
+	<File name="source\ast\expression\boolean_literal_node.h" open="1" top="0" tabpos="120">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\expression\expression_node.cpp" open="1" top="0" tabpos="22">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="source\ast\expression\expression_node.h" open="1" top="0" tabpos="121">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\expression\function_call_node.cpp" open="1" top="0" tabpos="23">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\expression\function_call_node.h" open="1" top="0" tabpos="122">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\expression\identifier_node.cpp" open="1" top="0" tabpos="24">
+		<Cursor position="1440" topLine="0" />
+	</File>
+	<File name="source\ast\expression\identifier_node.h" open="1" top="0" tabpos="123">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\expression\integer_literal_node.cpp" open="1" top="0" tabpos="25">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\expression\integer_literal_node.h" open="1" top="0" tabpos="124">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\expression\negation_node.cpp" open="1" top="0" tabpos="26">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\expression\negation_node.h" open="1" top="0" tabpos="125">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\expression\not_node.cpp" open="1" top="0" tabpos="27">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\expression\not_node.h" open="1" top="0" tabpos="126">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\expression\or_node.cpp" open="1" top="0" tabpos="28">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\expression\or_node.h" open="1" top="0" tabpos="127">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\expression\relational_node.cpp" open="1" top="0" tabpos="29">
+		<Cursor position="1446" topLine="0" />
+	</File>
+	<File name="source\ast\expression\relational_node.h" open="1" top="0" tabpos="128">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\expression\relational_operator.cpp" open="1" top="0" tabpos="30">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\expression\relational_operator.h" open="1" top="0" tabpos="129">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\expression\string_literal_node.cpp" open="1" top="0" tabpos="31">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\expression\string_literal_node.h" open="1" top="0" tabpos="130">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\node.cpp" open="0" top="0" tabpos="27">
+		<Cursor position="117" topLine="0" />
+	</File>
+	<File name="source\ast\node.h" open="1" top="0" tabpos="147">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\statement\assignment_node.cpp" open="1" top="0" tabpos="32">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\statement\assignment_node.h" open="1" top="0" tabpos="131">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\statement\break_node.cpp" open="1" top="0" tabpos="33">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\statement\break_node.h" open="1" top="0" tabpos="132">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\statement\conditional_node.cpp" open="1" top="0" tabpos="34">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\statement\conditional_node.h" open="1" top="0" tabpos="133">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\statement\continue_node.cpp" open="1" top="0" tabpos="35">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\statement\continue_node.h" open="1" top="0" tabpos="134">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\statement\for_loop_node.cpp" open="1" top="0" tabpos="36">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\statement\for_loop_node.h" open="1" top="0" tabpos="135">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\statement\loop_node.cpp" open="1" top="0" tabpos="37">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\statement\loop_node.h" open="1" top="0" tabpos="136">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\statement\post_test_loop_node.cpp" open="1" top="0" tabpos="38">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\statement\post_test_loop_node.h" open="1" top="0" tabpos="137">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\statement\pre_test_loop_node.cpp" open="1" top="0" tabpos="39">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\statement\pre_test_loop_node.h" open="1" top="0" tabpos="138">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\statement\procedure_call_node.cpp" open="1" top="0" tabpos="40">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\statement\procedure_call_node.h" open="1" top="0" tabpos="139">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\statement\read_node.cpp" open="1" top="0" tabpos="41">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\statement\read_node.h" open="1" top="0" tabpos="140">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\statement\return_node.cpp" open="1" top="0" tabpos="42">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\statement\return_node.h" open="1" top="0" tabpos="141">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\statement\skip_statement_node.cpp" open="1" top="0" tabpos="43">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\statement\skip_statement_node.h" open="1" top="0" tabpos="142">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\statement\statement_node.cpp" open="1" top="0" tabpos="44">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\statement\statement_node.h" open="1" top="0" tabpos="143">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\statement\statement_sequence_node.cpp" open="1" top="0" tabpos="45">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\statement\statement_sequence_node.h" open="1" top="0" tabpos="144">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\statement\write_line_node.cpp" open="1" top="0" tabpos="46">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\statement\write_line_node.h" open="1" top="0" tabpos="145">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\statement\write_node.cpp" open="1" top="0" tabpos="47">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\ast\statement\write_node.h" open="1" top="0" tabpos="146">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\code_generator\code_generator_exception.cpp" open="1" top="0" tabpos="74">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\code_generator\code_generator_exception.h" open="1" top="0" tabpos="176">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\code_generator\intermediate\instruction\arithmetic_instruction.cpp" open="1" top="0" tabpos="48">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\code_generator\intermediate\instruction\arithmetic_instruction.h" open="1" top="0" tabpos="148">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\code_generator\intermediate\instruction\call_instruction.cpp" open="1" top="0" tabpos="49">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\code_generator\intermediate\instruction\call_instruction.h" open="1" top="0" tabpos="149">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\code_generator\intermediate\instruction\conditional_goto_instruction.cpp" open="1" top="0" tabpos="50">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\code_generator\intermediate\instruction\conditional_goto_instruction.h" open="1" top="0" tabpos="150">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\code_generator\intermediate\instruction\copy_instruction.cpp" open="1" top="0" tabpos="51">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\code_generator\intermediate\instruction\copy_instruction.h" open="1" top="0" tabpos="151">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\code_generator\intermediate\instruction\goto_instruction.cpp" open="1" top="0" tabpos="52">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\code_generator\intermediate\instruction\goto_instruction.h" open="1" top="0" tabpos="152">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\code_generator\intermediate\instruction\instruction.cpp" open="1" top="0" tabpos="53">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\code_generator\intermediate\instruction\instruction.h" open="1" top="0" tabpos="153">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\code_generator\intermediate\instruction\negation_instruction.cpp" open="1" top="0" tabpos="54">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\code_generator\intermediate\instruction\negation_instruction.h" open="1" top="0" tabpos="154">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\code_generator\intermediate\instruction\nop_instruction.cpp" open="1" top="0" tabpos="55">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\code_generator\intermediate\instruction\nop_instruction.h" open="1" top="0" tabpos="155">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\code_generator\intermediate\instruction\parameter_instruction.cpp" open="1" top="0" tabpos="56">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\code_generator\intermediate\instruction\parameter_instruction.h" open="1" top="0" tabpos="156">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\code_generator\intermediate\instruction\read_instruction.cpp" open="1" top="0" tabpos="57">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\code_generator\intermediate\instruction\read_instruction.h" open="1" top="0" tabpos="157">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\code_generator\intermediate\instruction\return_instruction.cpp" open="1" top="0" tabpos="58">
+		<Cursor position="744" topLine="0" />
+	</File>
+	<File name="source\code_generator\intermediate\instruction\return_instruction.h" open="1" top="0" tabpos="158">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\code_generator\intermediate\instruction\write_instruction.cpp" open="1" top="0" tabpos="59">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\code_generator\intermediate\instruction\write_instruction.h" open="1" top="0" tabpos="159">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\code_generator\intermediate\instruction_argument\argument_information.cpp" open="1" top="0" tabpos="60">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\code_generator\intermediate\instruction_argument\argument_information.h" open="1" top="0" tabpos="160">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\code_generator\intermediate\instruction_argument\function_label.cpp" open="1" top="0" tabpos="61">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\code_generator\intermediate\instruction_argument\function_label.h" open="1" top="0" tabpos="161">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\code_generator\intermediate\instruction_argument\identifier_argument.cpp" open="1" top="0" tabpos="62">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\code_generator\intermediate\instruction_argument\identifier_argument.h" open="1" top="0" tabpos="162">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\code_generator\intermediate\instruction_argument\immediate_argument.cpp" open="1" top="0" tabpos="63">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\code_generator\intermediate\instruction_argument\immediate_argument.h" open="1" top="0" tabpos="163">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\code_generator\intermediate\instruction_argument\instruction_argument.cpp" open="1" top="0" tabpos="64">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\code_generator\intermediate\instruction_argument\instruction_argument.h" open="1" top="0" tabpos="164">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\code_generator\intermediate\instruction_argument\instruction_label.cpp" open="1" top="0" tabpos="65">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\code_generator\intermediate\instruction_argument\instruction_label.h" open="1" top="0" tabpos="165">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\code_generator\intermediate\instruction_argument\label_argument.cpp" open="1" top="0" tabpos="66">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\code_generator\intermediate\instruction_argument\label_argument.h" open="1" top="0" tabpos="166">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\code_generator\intermediate\instruction_argument\string_argument.cpp" open="1" top="0" tabpos="67">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\code_generator\intermediate\instruction_argument\string_argument.h" open="1" top="0" tabpos="167">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\code_generator\intermediate\instruction_argument\temporary_argument.cpp" open="1" top="0" tabpos="68">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\code_generator\intermediate\instruction_argument\temporary_argument.h" open="1" top="0" tabpos="168">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\code_generator\intermediate\intermediate_code.cpp" open="1" top="0" tabpos="69">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\code_generator\intermediate\intermediate_code.h" open="1" top="0" tabpos="169">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\code_generator\machine\basic_block.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="1145" topLine="0" />
+	</File>
+	<File name="source\code_generator\machine\basic_block.h" open="1" top="0" tabpos="170">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\code_generator\machine\machine_code.cpp" open="1" top="0" tabpos="70">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\code_generator\machine\machine_code.h" open="1" top="0" tabpos="171">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="source\code_generator\machine\register_descriptor.cpp" open="1" top="0" tabpos="71">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\code_generator\machine\register_descriptor.h" open="1" top="0" tabpos="172">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\code_generator\machine\variable_descriptor.cpp" open="1" top="0" tabpos="72">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\code_generator\machine\variable_descriptor.h" open="1" top="0" tabpos="173">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\code_generator\machine\x64_architecture.cpp" open="1" top="0" tabpos="73">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\code_generator\machine\x64_architecture.h" open="1" top="0" tabpos="174">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\code_generator\machine\x86_architecture.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\code_generator\machine\x86_architecture.h" open="1" top="0" tabpos="175">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\debugger\debugger.cpp" open="1" top="0" tabpos="82">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\debugger\debugger.h" open="1" top="0" tabpos="190">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\debugger\debugger_implementations\formatted_ast_debugger.cpp" open="1" top="0" tabpos="75">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\debugger\debugger_implementations\formatted_ast_debugger.h" open="1" top="0" tabpos="177">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\debugger\debugger_implementations\simple_ast_debugger.cpp" open="1" top="0" tabpos="76">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\debugger\debugger_implementations\simple_ast_debugger.h" open="1" top="0" tabpos="178">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\debugger\debugger_implementations\simple_code_generator_debugger.cpp" open="1" top="0" tabpos="77">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\debugger\debugger_implementations\simple_code_generator_debugger.h" open="1" top="0" tabpos="179">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\debugger\debugger_implementations\simple_parser_debugger.cpp" open="1" top="0" tabpos="78">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\debugger\debugger_implementations\simple_parser_debugger.h" open="1" top="0" tabpos="180">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\debugger\debugger_implementations\simple_scanner_debugger.cpp" open="1" top="0" tabpos="79">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\debugger\debugger_implementations\simple_scanner_debugger.h" open="1" top="0" tabpos="181">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\debugger\debugger_implementations\simple_semantic_debugger.cpp" open="1" top="0" tabpos="80">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\debugger\debugger_implementations\simple_semantic_debugger.h" open="1" top="0" tabpos="182">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\debugger\debugger_implementations\simple_symbol_table_debugger.cpp" open="1" top="0" tabpos="81">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\debugger\debugger_implementations\simple_symbol_table_debugger.h" open="1" top="0" tabpos="183">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\debugger\debugger_interfaces.h" open="1" top="0" tabpos="191">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\debugger\debugger_interfaces\ast_debugger.h" open="1" top="0" tabpos="185">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\debugger\debugger_interfaces\code_generator_debugger.h" open="1" top="0" tabpos="184">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\debugger\debugger_interfaces\parser_debugger.h" open="1" top="0" tabpos="186">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\debugger\debugger_interfaces\scanner_debugger.h" open="1" top="0" tabpos="187">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\debugger\debugger_interfaces\semantic_debugger.h" open="1" top="0" tabpos="188">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\debugger\debugger_interfaces\symbol_table_debugger.h" open="1" top="0" tabpos="189">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="source\debugger\debugger_utils.cpp" open="1" top="0" tabpos="83">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\debugger\debugger_utils.h" open="1" top="0" tabpos="192">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\global\global.cpp" open="1" top="0" tabpos="84">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\global\global.h" open="1" top="0" tabpos="193">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\main.cpp" open="1" top="0" tabpos="5">
+		<Cursor position="1564" topLine="32" />
+	</File>
+	<File name="source\oberonc\oberonc.cpp" open="1" top="0" tabpos="85">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\oberonc\oberonc.h" open="1" top="0" tabpos="194">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\oberonc\oberonc_exception.cpp" open="1" top="0" tabpos="86">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="source\oberonc\oberonc_exception.h" open="1" top="0" tabpos="195">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\parser\parser.cpp" open="1" top="0" tabpos="87">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\parser\parser.h" open="1" top="0" tabpos="196">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\parser\parser_exception.cpp" open="1" top="0" tabpos="88">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\parser\parser_exception.h" open="1" top="0" tabpos="197">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\parser\yy_parser.cpp" open="1" top="0" tabpos="89">
+		<Cursor position="1009" topLine="0" />
+	</File>
+	<File name="source\parser\yy_parser.h" open="0" top="0" tabpos="35">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="source\scanner\scanner.cpp" open="1" top="0" tabpos="90">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\scanner\scanner.h" open="1" top="0" tabpos="198">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\scanner\scanner_exception.cpp" open="1" top="0" tabpos="91">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\scanner\scanner_exception.h" open="1" top="0" tabpos="199">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\scanner\scanner_lex.cpp" open="1" top="0" tabpos="92">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="source\scanner\token_type.cpp" open="1" top="0" tabpos="93">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\scanner\token_type.h" open="1" top="0" tabpos="200">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\symbol_table\data_type.cpp" open="1" top="0" tabpos="101">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\symbol_table\data_type.h" open="1" top="0" tabpos="207">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\symbol_table\identifier_category\constant_information.cpp" open="1" top="0" tabpos="94">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\symbol_table\identifier_category\constant_information.h" open="1" top="0" tabpos="201">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\symbol_table\identifier_category\formal_parameter_information.cpp" open="1" top="0" tabpos="95">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\symbol_table\identifier_category\formal_parameter_information.h" open="1" top="0" tabpos="202">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\symbol_table\identifier_category\function_information.cpp" open="1" top="0" tabpos="96">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\symbol_table\identifier_category\function_information.h" open="1" top="0" tabpos="203">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\symbol_table\identifier_category\identifier_category_type.cpp" open="1" top="0" tabpos="97">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\symbol_table\identifier_category\identifier_category_type.h" open="1" top="0" tabpos="3">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\symbol_table\identifier_category\module_information.cpp" open="1" top="0" tabpos="98">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\symbol_table\identifier_category\module_information.h" open="1" top="0" tabpos="204">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\symbol_table\identifier_category\temporary_information.cpp" open="1" top="0" tabpos="99">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\symbol_table\identifier_category\temporary_information.h" open="1" top="0" tabpos="205">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\symbol_table\identifier_category\variable_information.cpp" open="1" top="0" tabpos="100">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\symbol_table\identifier_category\variable_information.h" open="1" top="0" tabpos="206">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\symbol_table\identifier_information.cpp" open="1" top="0" tabpos="102">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\symbol_table\identifier_information.h" open="1" top="0" tabpos="2">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\symbol_table\scope.cpp" open="1" top="0" tabpos="103">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\symbol_table\scope.h" open="1" top="0" tabpos="208">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\symbol_table\symbol_table.cpp" open="1" top="0" tabpos="104">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\symbol_table\symbol_table.h" open="1" top="0" tabpos="209">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\util\hash_table.h" open="1" top="0" tabpos="210">
+		<Cursor position="746" topLine="0" />
+	</File>
+	<File name="source\util\integer_hash_table.h" open="1" top="1" tabpos="211">
+		<Cursor position="1018" topLine="27" />
+	</File>
+</CodeBlocks_layout_file>

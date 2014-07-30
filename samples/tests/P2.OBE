@@ -1,0 +1,8 @@
+module Programa2;
+var a : integer;
+begin
+	write("Digite um valor: ");
+	read( a );
+	write("O valor digitado foi ");
+	writeln( a );
+end Programa2.

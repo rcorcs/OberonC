@@ -1,0 +1,15 @@
+module Programa9;
+var a, b : integer;
+
+begin
+	read(a);
+	
+	while ( a >= 0) do
+		if( a = 2 ) then
+			break;
+		end;
+		writeln(a);
+		a := a - 1;
+	end;
+
+end Programa9.

@@ -1,0 +1,4 @@
+module Programa0;
+begin
+     writeln("Hello World!");
+end Programa0.

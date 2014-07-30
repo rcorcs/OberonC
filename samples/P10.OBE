@@ -1,0 +1,13 @@
+module Programa10;
+var a : integer;
+
+procedure println( x : integer );
+begin 
+	writeln(x);
+end println;
+
+begin
+	write("Digite um numero: ");
+	read( a );
+	println( a );
+end Programa10.

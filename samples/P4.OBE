@@ -1,0 +1,14 @@
+module Programa4;
+var a, b, c, d, e : integer;
+begin
+	a := 2;
+	b := 4 + 4 + a;
+	c := a + b;
+	d := c / 4;
+	e := c * 4;
+	writeln(a);
+	writeln(b);
+	writeln(c);
+	writeln(d);
+	writeln(e);
+end Programa4.

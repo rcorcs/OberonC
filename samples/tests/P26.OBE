@@ -1,0 +1,19 @@
+module Programa5;
+var a, b : integer;
+
+function somatorio( val: integer) : integer;
+begin
+	if( val >= 0 ) then
+		return( val + somatorio(val-1) );
+	else 
+		return 0;
+	end;
+end somatorio;
+
+begin
+	write("Digite um numero: ");
+	read(b);
+	a := somatorio(b);
+	write("somatorio: ");
+	writeln(a);
+end Programa5.

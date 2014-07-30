@@ -1,0 +1,33 @@
+module Programa11;
+var
+  num, n, r : Integer;
+
+function fibonacci(num: Integer): Integer; 
+var
+  x: Integer;
+begin
+
+   if num = 0 then
+      return 0;
+   elsif num = 1 then
+      return 1;
+   else
+	  x := fibonacci(num - 1);
+	  x := x + fibonacci(num - 2);
+      return x;
+   end;
+   
+end fibonacci;
+
+begin
+    write("N = "); 
+    read(n);
+	
+	r := fibonacci(n);
+		
+	write("Fibonacci(");
+	write(n);
+	write(") = ");
+	writeln(r);
+
+end Programa11.
