@@ -42,4 +42,6 @@ The build.sh do all the steps. It means that you can just execute the bash.sh pa
 ## TODO
 
 Finish support to x64 architecture.
+
 Add support to MIPS architecture.
+
