@@ -1,3 +1,6 @@
+
+WINDOWS
+
 oberonc.exe is the compiler executable.
 It generates an assembly file compiled from the source code.
 
@@ -17,6 +20,16 @@ can just execute the build.cmd and type the name
 of the source file, without the extension (.obe),
 and it will call the compiler, the assembler and
 the linker.
+
+
+LINUX
+
+oberonc is the compiler executable.
+It generates an assembly file compiled from the source code.
+
+After oberonc has generated the assembly file, you can execute the GNU C Compiler (gcc) to generate the executable file of your program.
+
+The build.sh do all the steps. It means that you can just execute the bash.sh passing the path of your source file as an argument, then it will call the Oberon-0 compiler and the GNU C Compiler (gcc) generating the executable in the same folder of you source file.
 
 
 Copyright 2011 ROCHA, Rodrigo C. O.
