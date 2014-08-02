@@ -39,5 +39,7 @@ After oberonc has generated the assembly file, you can execute the GNU C Compile
 
 The build.sh do all the steps. It means that you can just execute the bash.sh passing the path of your source file as an argument, then it will call the Oberon-0 compiler and the GNU C Compiler (gcc) generating the executable in the same folder of you source file.
 
+## TODO
 
-
+Finish support to x64 architecture.
+Add support to MIPS architecture.
