@@ -150,7 +150,9 @@ void X64Architecture::genStartingCode()
     int strCount = 1;
     for(list<string>::iterator it = stringList->begin(); it!=stringList->end(); it++, strCount++) {
         x64Instruction = "str_";
-        x64Instruction += itoa( strCount, temp, 10 );
+        //x64Instruction += itoa( strCount, temp, 10 );
+        sprintf(temp, "%d", strCount);
+        x64Instruction += temp;
         x64Instruction += ":";
         gen(x64Instruction);
 
@@ -207,7 +209,9 @@ string X64Architecture::getVariableAddress(IdentifierInformation *identifierInfo
         string address = "(%rbx)";
         return address;
     } else {
-        string address = itoa( getOffset(identifierInformation), temp, 10 );
+        //string address = itoa( getOffset(identifierInformation), temp, 10 );
+        sprintf(temp, "%d", getOffset(identifierInformation));
+        string address = temp;
         address += "(%rbp)";
         return address;
     }
@@ -274,7 +278,7 @@ int X64Architecture::getEmptyRegister(list<int> *avoidList, list<int> *avoidSeco
     int min_cost = 0x80000000, best_reg = NO_REGISTER;
     list<IdentifierInformation *> *identifiers;
     for(int reg = 0; reg<getTotalRegisters(); reg++) {
-        //há registrador livre?
+        //ha registrador livre?
         bool isAllowed = true;
 
 
@@ -307,7 +311,7 @@ int X64Architecture::getEmptyRegister(list<int> *avoidList, list<int> *avoidSeco
 
         identifiers = getRegisterDescriptor(reg)->getVariablesList();
 
-        //há registrador que armazena apenas variáveis não vivas?
+        //ha registrador que armazena apenas variaveis nao vivas?
         bool useRegister = isAllowed;
         for(list<IdentifierInformation *>::iterator it = identifiers->begin(); it!=identifiers->end(); it++) {
 
@@ -316,7 +320,7 @@ int X64Architecture::getEmptyRegister(list<int> *avoidList, list<int> *avoidSeco
         if(useRegister)
             return reg;
 
-        //há registrador que armazena apenas variáveis salvas?
+        //ha registrador que armazena apenas variaveis salvas?
         useRegister = isAllowed;
         for(list<IdentifierInformation *>::iterator it = identifiers->begin(); it!=identifiers->end(); it++) {
             useRegister = useRegister && getVariableDescriptor(*it)->isInMemory();
@@ -351,7 +355,7 @@ int X64Architecture::getEmptyRegister(list<int> *avoidList, list<int> *avoidSeco
     return best_reg;
 }
 
-//FUNÇÃO get_reg( instruction(op, x, y, z) )
+//FUNCAO get_reg( instruction(op, x, y, z) )
 //FAZER AQUI: FAZER DE ACORDO COM OS SLIDES
 vector<int> *X64Architecture::getRegisters(Instruction *instruction)
 {
@@ -364,7 +368,7 @@ vector<int> *X64Architecture::getRegisters(Instruction *instruction)
 
     switch(instruction->getInstructionType()) {
 
-        // Otimiza acesso para operação comutativa
+        // Otimiza acesso para operacao comutativa
     case INSTRUCTION_TYPE_ARITHMETIC:
         this->optmiseArithmeticInstruction(instruction);
         break;
@@ -401,14 +405,14 @@ vector<int> *X64Architecture::getRegisters(Instruction *instruction)
     }
 
     // aloca registrador Ry para y
-    //caso 1: y não está em registrador
+    //caso 1: y nao esta em registrador
     if(isFirstValidArgument) {
         if(firstSourceDescriptor->getRegistersList()->empty()) {
             if(secondSourceDescriptor)
                 firstSourceRegister = getEmptyRegister( secondSourceDescriptor->getRegistersList() );
             else firstSourceRegister = getEmptyRegister( );
             genLoad(firstSourceInfo, firstSourceRegister);
-        } else { //caso 2: y está no registrador R1
+        } else { //caso 2: y esta no registrador R1
             firstSourceRegister = firstSourceDescriptor->getRegistersList()->front();
         }
     } else {
@@ -422,9 +426,9 @@ vector<int> *X64Architecture::getRegisters(Instruction *instruction)
     }
 
     if(secondSourceInfo) {
-        //caso 1: z não está em registrador
+        //caso 1: z nao esta em registrador
         if(secondSourceDescriptor->getRegistersList()->empty()) {
-            if(src2->getStatus()>=0) { //z é usado novamente
+            if(src2->getStatus()>=0) { //z e' usado novamente
                 if(isFirstValidArgument)
                     secondSourceRegister = getEmptyRegister( firstSourceDescriptor->getRegistersList() );
                 else secondSourceRegister = getEmptyRegister( );
@@ -796,7 +800,7 @@ void X64Architecture::genCopy(CopyInstruction *copyInstruction)
     VariableDescriptor * dstDV = this->getVariableDescriptor(dstIdentifierInfo);
     RegisterDescriptor * dstDR  = this->getRegisterDescriptor(dstReg);
 
-    // atualização das informações (Rx = Ry)
+    // atualizacao das informacoes (Rx = Ry)
 
 //DV[x].reg = new_list(Rx); DV[x].mem = false;
     dstDV->removeAllRegisters();
@@ -807,7 +811,7 @@ void X64Architecture::genCopy(CopyInstruction *copyInstruction)
     dstDR->addVariable(dstIdentifierInfo);
 
 
-// não é necessário gerar código
+// nao e' necessario gerar codigo
 
 
 
@@ -869,11 +873,11 @@ void X64Architecture::genNegation(NegationInstruction *negationInstruction)
 
     string x64Instruction ;
 
-// geração do código
+// geracao do codigo
 
 
 //if (Rx != Ry)
-//then gen_x64("movq " • Ry • "," • Rx);
+//then gen_x64("movq " ? Ry ? "," ? Rx);
     /*
     if(dstReg != srcReg) {
         x64Instruction = "\tmovq ";
@@ -902,7 +906,7 @@ void X64Architecture::genNegation(NegationInstruction *negationInstruction)
 
     gen(x64Instruction);
 
-// atualização das informações
+// atualizacao das informacoes
     if(dstReg == srcReg) {
 
 // DV[y].reg.remove(Ry);
@@ -1160,7 +1164,9 @@ string X64Architecture::getMachineImmediate(long immediate)
 {
     char temp[64];
     string x64Immediate = "$";
-    x64Immediate += itoa(immediate, temp, 10);
+    //x64Immediate += itoa(immediate, temp, 10);
+    sprintf(temp, "%d", immediate);
+    x64Immediate += temp;
     return x64Immediate;
 
 }
@@ -1205,7 +1211,9 @@ string X64Architecture::getStringLabel(const char *c_str)
     for(list<string>::iterator it = stringList->begin(); it!=stringList->end(); it++, strCount++) {
         if((*it)==str) {
             strLabel = "str_";
-            strLabel += itoa( strCount, temp, 10 );
+            //strLabel += itoa( strCount, temp, 10 );
+            sprintf(temp, "%d", strCount);
+            strLabel += temp;
         }
     }
     return strLabel;
@@ -1251,7 +1259,9 @@ string X64Architecture::getMachineInstructionLabel(int labelNumber)
     char temp[64];
     string label = "L";
 
-    label += itoa(labelNumber, temp, 10);
+    //label += itoa(labelNumber, temp, 10);
+    sprintf(temp, "%d", labelNumber);
+    label += temp;
 
     return label;
 }

@@ -148,7 +148,9 @@ void X86Architecture::genStartingCode()
     int strCount = 1;
     for(list<string>::iterator it = stringList->begin(); it!=stringList->end(); it++, strCount++) {
         x86Instruction = "str_";
-        x86Instruction += itoa( strCount, temp, 10 );
+        //x86Instruction += itoa( strCount, temp, 10 );
+        sprintf(temp, "%d", strCount);
+        x86Instruction += temp;
         x86Instruction += ":";
         gen(x86Instruction);
 
@@ -215,7 +217,9 @@ string X86Architecture::getVariableAddress(IdentifierInformation *identifierInfo
         return address;
         */
     } else {
-        string address = itoa( getOffset(identifierInformation), temp, 10 );
+        //string address = itoa( getOffset(identifierInformation), temp, 10 );
+        sprintf(temp, "%d", getOffset(identifierInformation));
+        string address = temp;
         address += "(%ebp)";
         return address;
     }
@@ -1334,7 +1338,9 @@ void X86Architecture::genWrite(const char *str)
 {
     char temp[64];
     string x86Instruction = "\tsubl $";
-    x86Instruction += itoa(WORD_SIZE, temp, 10);
+    //x86Instruction += itoa(WORD_SIZE, temp, 10);
+    sprintf(temp, "%d", WORD_SIZE);
+    x86Instruction += temp;
     x86Instruction += ", %esp";
     gen(x86Instruction);
 
@@ -1344,10 +1350,16 @@ void X86Architecture::genWrite(const char *str)
     gen(x86Instruction);
 
     gen("\tmovl $0, %eax");
+#ifdef _WIN32
     gen("\tcall _printf");
+#else
+    gen("\tcall printf");
+#endif
 
     x86Instruction = "\taddl $";
-    x86Instruction += itoa(WORD_SIZE, temp, 10);
+    //x86Instruction += itoa(WORD_SIZE, temp, 10);
+    sprintf(temp, "%d", WORD_SIZE);
+    x86Instruction += temp;
     x86Instruction += ", %esp";
     gen(x86Instruction);
 }
@@ -1356,7 +1368,9 @@ void X86Architecture::genWrite(IdentifierInformation *identifierInformation)
 {
     char temp[64];
     string x86Instruction = "\tsubl $";
-    x86Instruction += itoa((2*WORD_SIZE), temp, 10);
+    //x86Instruction += itoa((2*WORD_SIZE), temp, 10);
+    sprintf(temp, "%d", (2*WORD_SIZE));
+    x86Instruction += temp;
     x86Instruction += ", %esp";
     gen(x86Instruction);
 
@@ -1369,16 +1383,25 @@ void X86Architecture::genWrite(IdentifierInformation *identifierInformation)
     gen(x86Instruction);
 
     x86Instruction = "\tmovl %eax, ";
-    x86Instruction += itoa(WORD_SIZE, temp, 10);
+    //x86Instruction += itoa(WORD_SIZE, temp, 10);
+    sprintf(temp, "%d", WORD_SIZE);
+    x86Instruction += temp;
     x86Instruction += "(%esp)";
     gen(x86Instruction);
 
     gen("\tmovl $mask_io_str, (%esp)");
     gen("\tmovl $0, %eax");
+#ifdef _WIN32
     gen("\tcall _printf");
+#else
+    gen("\tcall printf");
+#endif
+
 
     x86Instruction = "\taddl $";
-    x86Instruction += itoa((2*WORD_SIZE), temp, 10);
+    //x86Instruction += itoa((2*WORD_SIZE), temp, 10);
+    sprintf(temp, "%d", (2*WORD_SIZE));
+    x86Instruction += temp;
     x86Instruction += ", %esp";
     gen(x86Instruction);
 }
@@ -1387,23 +1410,33 @@ void X86Architecture::genWrite(int registerNumber)
 {
     char temp[64];
     string x86Instruction = "\tsubl $";
-    x86Instruction += itoa((2*WORD_SIZE), temp, 10);
+    //x86Instruction += itoa((2*WORD_SIZE), temp, 10);
+    sprintf(temp, "%d", (2*WORD_SIZE));
+    x86Instruction += temp;
     x86Instruction += ", %esp";
     gen(x86Instruction);
 
     x86Instruction = "\tmovl ";
     x86Instruction += getRegister(registerNumber);
     x86Instruction += ", ";
-    x86Instruction += itoa(WORD_SIZE, temp, 10);
+    //x86Instruction += itoa(WORD_SIZE, temp, 10);
+    sprintf(temp, "%d", WORD_SIZE);
+    x86Instruction += temp;
     x86Instruction += "(%esp)";
     gen(x86Instruction);
 
     gen("\tmovl $mask_io_str, (%esp)");
     gen("\tmovl $0, %eax");
+#ifdef _WIN32
     gen("\tcall _printf");
+#else
+    gen("\tcall printf");
+#endif
 
     x86Instruction = "\taddl $";
-    x86Instruction += itoa((2*WORD_SIZE), temp, 10);
+    //x86Instruction += itoa((2*WORD_SIZE), temp, 10);
+    sprintf(temp, "%d", (2*WORD_SIZE));
+    x86Instruction += temp;
     x86Instruction += ", %esp";
     gen(x86Instruction);
 }
@@ -1415,7 +1448,9 @@ void X86Architecture::genWrite(ImmediateArgument * immediateArgument)
 
     char temp[64];
     string x86Instruction = "\tsubl $";
-    x86Instruction += itoa((2*WORD_SIZE), temp, 10);
+    //x86Instruction += itoa((2*WORD_SIZE), temp, 10);
+    sprintf(temp, "%d", (2*WORD_SIZE));
+    x86Instruction += temp;
     x86Instruction += ", %esp";
     gen(x86Instruction);
 
@@ -1424,16 +1459,24 @@ void X86Architecture::genWrite(ImmediateArgument * immediateArgument)
     x86Instruction = "\tmovl ";
     x86Instruction += temp;
     x86Instruction += ", ";
-    x86Instruction += itoa(WORD_SIZE, temp, 10);
+    //x86Instruction += itoa(WORD_SIZE, temp, 10);
+    sprintf(temp, "%d", WORD_SIZE);
+    x86Instruction += temp;
     x86Instruction += "(%esp)";
     gen(x86Instruction);
 
     gen("\tmovl $mask_io_str, (%esp)");
     gen("\tmovl $0, %eax");
+#ifdef _WIN32
     gen("\tcall _printf");
+#else
+    gen("\tcall printf");
+#endif
 
     x86Instruction = "\taddl $";
-    x86Instruction += itoa((2*WORD_SIZE), temp, 10);
+    //x86Instruction += itoa((2*WORD_SIZE), temp, 10);
+    sprintf(temp, "%d", (2*WORD_SIZE));
+    x86Instruction += temp;
     x86Instruction += ", %esp";
     gen(x86Instruction);
 }
@@ -1442,7 +1485,9 @@ void X86Architecture::genRead(IdentifierInformation *identifierInformation)
 {
     char temp[64];
     string x86Instruction = "\tsubl $";
-    x86Instruction += itoa((2*WORD_SIZE), temp, 10);
+    //x86Instruction += itoa((2*WORD_SIZE), temp, 10);
+    sprintf(temp, "%d", (2*WORD_SIZE));
+    x86Instruction += temp;
     x86Instruction += ", %esp";
     gen(x86Instruction);
 
@@ -1451,7 +1496,9 @@ void X86Architecture::genRead(IdentifierInformation *identifierInformation)
         x86Instruction = "\tmovl $_";
         x86Instruction += identifierInformation->getIdentifier();
         x86Instruction += ", ";
-        x86Instruction += itoa(WORD_SIZE, temp, 10);
+        //x86Instruction += itoa(WORD_SIZE, temp, 10);
+        sprintf(temp, "%d", WORD_SIZE);
+        x86Instruction += temp;
         x86Instruction += "(%esp)";
         gen(x86Instruction);
     } else {
@@ -1461,16 +1508,23 @@ void X86Architecture::genRead(IdentifierInformation *identifierInformation)
         gen(x86Instruction);
 
         x86Instruction = "\tmovl %eax, ";
-        x86Instruction += itoa(WORD_SIZE, temp, 10);
+        //x86Instruction += itoa(WORD_SIZE, temp, 10);
+        sprintf(temp, "%d", WORD_SIZE);
+        x86Instruction += temp;
         x86Instruction += "(%esp)";
         gen(x86Instruction);
     }
     gen("\tmovl $mask_io_str, (%esp)");
     gen("\tmovl $0, %eax");
+#ifdef _WIN32
     gen("\tcall _scanf");
-
+#else
+    gen("\tcall scanf");
+#endif
     x86Instruction = "\taddl $";
-    x86Instruction += itoa((2*WORD_SIZE), temp, 10);
+    //x86Instruction += itoa((2*WORD_SIZE), temp, 10);
+    sprintf(temp, "%d", (2*WORD_SIZE));
+    x86Instruction += temp;
     x86Instruction += ", %esp";
     gen(x86Instruction);
 
@@ -1501,7 +1555,9 @@ string X86Architecture::getMachineImmediate(long immediate)
 {
     char temp[64];
     string x86Immediate = "$";
-    x86Immediate += itoa(immediate, temp, 10);
+    //x86Immediate += itoa(immediate, temp, 10);
+    sprintf(temp, "%d", immediate);
+    x86Immediate += temp;
     return x86Immediate;
 
 }
@@ -1553,7 +1609,9 @@ string X86Architecture::getStringLabel(const char *c_str)
         for(list<string>::iterator it = stringList->begin(); it!=stringList->end(); it++, strCount++) {
             if(str==getMachineString(*it)) {
                 strLabel = "str_";
-                strLabel += itoa( strCount, temp, 10 );
+                //strLabel += itoa( strCount, temp, 10 );
+                sprintf(temp, "%d", strCount);
+                strLabel += temp;
             }
         }
     }
@@ -1581,10 +1639,15 @@ string X86Architecture::getFunctionLabel(IdentifierInformation * functionInfo)
 string X86Architecture::getFunctionLabel(string functionName)
 {
     string functionLabel;
-    if(functionName=="main")
+    if(functionName=="main"){
+#ifdef _WIN32
         functionLabel = "_";
-    else
+#else
+        functionLabel = "";
+#endif
+    }else{
         functionLabel = "__";
+    }
     functionLabel += functionName;
     return functionLabel;
 }
@@ -1600,7 +1663,9 @@ string X86Architecture::getMachineInstructionLabel(int labelNumber)
     char temp[64];
     string label = "L";
 
-    label += itoa(labelNumber, temp, 10);
+    //label += itoa(labelNumber, temp, 10);
+    sprintf(temp, "%d", labelNumber);
+    label += temp;
 
     return label;
 }

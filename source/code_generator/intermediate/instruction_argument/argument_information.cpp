@@ -62,7 +62,8 @@ void ArgumentInformation::setStatus(int status)
         break;
 
     default:
-        itoa(status, this->statusPrefix_, 10);
+        //itoa(status, this->statusPrefix_, 10);
+        sprintf(this->statusPrefix_, "%d", status);
         break;
     }
 }

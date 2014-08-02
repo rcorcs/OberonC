@@ -13,7 +13,7 @@
 
 char * getDebugFileName(const char *baseFileName, const char *extension)
 {
-    char *baseFileExtension = strrchr(baseFileName, '.');
+    const char *baseFileExtension = strrchr(baseFileName, '.');
     size_t debugFileExtensionLen = strlen(extension) + 1 ; //  '.' + extension
 
     char *debugFileName;
