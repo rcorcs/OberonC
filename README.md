@@ -45,3 +45,10 @@ Finish support to x64 architecture.
 
 Add support to MIPS architecture.
 
+
+### Building Dependencies
+
+* [gcc](https://gcc.gnu.org/)
+* [bison](http://www.gnu.org/software/bison/) 
+* [flex](http://flex.sourceforge.net/)
+
