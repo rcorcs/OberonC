@@ -1,5 +1,7 @@
 
-# Oberon-0 Compiler: A Compiler for a subset of Oberon version 1.0
+# Oberon-0 Compiler
+
+An educational compiler for a subset of Oberon version 1.0
 
 ## Quickstart
 
@@ -43,7 +45,7 @@ The build.sh do all the steps. It means that you can just execute the bash.sh pa
 
 Finish support to x64 architecture.
 
-Add support to MIPS architecture.
+Finish support to MIPS architecture.
 
 
 ### Building Dependencies

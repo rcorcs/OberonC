@@ -41,6 +41,7 @@ using namespace std;
 #include "../code_generator/machine/machine_code.h"
 #include "../code_generator/machine/x64_architecture.h"
 #include "../code_generator/machine/x86_architecture.h"
+#include "../code_generator/machine/mips_architecture.h"
 #include "../code_generator/machine/basic_block.h"
 
 #include "oberonc_exception.h"

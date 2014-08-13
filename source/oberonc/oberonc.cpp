@@ -286,6 +286,8 @@ void OberonC::runIntermediateCodeGeneration()
             machineCode = new X64Architecture(&this->symbolTable_, this->intermediateCode_);
         }else if(getMachineCodeType()==MACHINE_CODE_X86){
             machineCode = new X86Architecture(&this->symbolTable_, this->intermediateCode_);
+        }else if(getMachineCodeType()==MACHINE_CODE_MIPS){
+            machineCode = new MIPSArchitecture(&this->symbolTable_, this->intermediateCode_);
         }
         machineCode->open(this->sourceFileName_);
         machineCode->generateCode();

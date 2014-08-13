@@ -22,7 +22,8 @@ enum CompilerArg
     COMPILER_ARG_PHASE_INTERMEDIATE_CODE,
     COMPILER_ARG_C_CODE,
     COMPILER_ARG_X64,
-    COMPILER_ARG_X86
+    COMPILER_ARG_X86,
+    COMPILER_ARG_MIPS
 
     // Futuros novos argumentos, sobretudo referentes a fases de compilação,
     // devem ser definidos aqui.
@@ -57,9 +58,11 @@ int main(int argc, char ** argv)
 #ifdef _WIN32
     bool x64 = false;
     bool x86 = true;
+    bool mips = false;
 #else
     bool x64 = true;
     bool x86 = false;
+    bool mips = false;
 #endif
 
     if (argc < 2)
@@ -96,6 +99,7 @@ int main(int argc, char ** argv)
 
     compilerArgTable.set("-x64", COMPILER_ARG_X64);
     compilerArgTable.set("-x86", COMPILER_ARG_X86);
+    compilerArgTable.set("-mips", COMPILER_ARG_MIPS);
 
     // Futuras novas fases devem ser adicionadas à lista de argumentos.
 
@@ -145,11 +149,21 @@ int main(int argc, char ** argv)
                 break;
 
             case COMPILER_ARG_X64:
+                x86 = false;
                 x64 = true;
+                mips = false;
                 break;
 
             case COMPILER_ARG_X86:
                 x86 = true;
+                x64 = false;
+                mips = false;
+                break;
+
+            case COMPILER_ARG_MIPS:
+                x86 = false;
+                x64 = false;
+                mips = true;
                 break;
                 // Futuras novas fases devem ser checadas aqui.
             }
@@ -172,9 +186,11 @@ int main(int argc, char ** argv)
 
     if(x86){
         ::oberonc.setMachineCodeType(MACHINE_CODE_X86);
-    } else {
+    } else if(x64){
         ::oberonc.setMachineCodeType(MACHINE_CODE_X64);
-    }
+    }else {
+        ::oberonc.setMachineCodeType(MACHINE_CODE_MIPS);
+	}
 
     ::oberonc.setDebug(enableDebug);
 

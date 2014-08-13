@@ -22,7 +22,8 @@
 
 enum MachineCodeType {
     MACHINE_CODE_X64,
-    MACHINE_CODE_X86
+    MACHINE_CODE_X86,
+    MACHINE_CODE_MIPS
 };
 
 class MachineCode
