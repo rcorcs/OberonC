@@ -19,7 +19,7 @@ main:
 	syscall
 	li $v0, 1
 	la $a0, _a
-	lw $a0, 0($a0)
+	lw $a0, 0($a0), 
 	syscall
 	li $v0, 4
 	la $a0, new_line_str

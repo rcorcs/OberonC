@@ -18,7 +18,9 @@ main:
 L3:
 	nop
 	li $t0, 2
-	bne _a, $t0, L4
+	la $t9, _a
+	lw $t9, 0($t9)
+	bne $t0, $t9, L4
 	nop
 	j L2
 	j L5
@@ -27,18 +29,22 @@ L4:
 L5:
 	li $v0, 1
 	la $a0, _a
-	lw $a0, 0($a0)
+	lw $a0, 0($a0), 
 	syscall
 	li $v0, 4
 	la $a0, new_line_str
 	syscall
 	la $t0, _a
 	lw $t0, 0($t0)
-	decl $t0
-	movl $t0, _a
+	li $t9, 1
+	sub $t0, $t0, $t9
+	la $t9, _a
+	sw $t0, 0($t9)
 L1:
 	li $t0, 0
-	ble _a, $t0, L3
+	la $t9, _a
+	lw $t9, 0($t9)
+	ble $t0, $t9, L3
 	j L2
 L2:
 	jr $ra

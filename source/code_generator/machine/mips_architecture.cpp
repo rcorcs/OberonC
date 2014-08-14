@@ -627,15 +627,133 @@ void MIPSArchitecture::optmiseConditionalInstruction(Instruction * instruction)
 
 void MIPSArchitecture::genArithmetic(ArithmeticInstruction *instruction)
 {
-    vector<int> * regs = this->getRegisters(instruction);
-    vector<ArgumentInformation *> *args = instruction->getArgumentsInformation();
+	vector<int> * regs = this->getRegisters(instruction);
+	vector<ArgumentInformation *> *args = instruction->getArgumentsInformation();
 
-    IdentifierInformation * dstIdentifierInfo = this->getInfoFromArgument(args->at(0)->getInstructionArgument());
-    IdentifierInformation * src1IdentifierInfo = this->getInfoFromArgument( args->at(1)->getInstructionArgument());
-    IdentifierInformation * src2IdentifierInfo = this->getInfoFromArgument( args->at(2)->getInstructionArgument());
+	IdentifierInformation * dstIdentifierInfo = this->getInfoFromArgument(args->at(0)->getInstructionArgument());
+	IdentifierInformation * src1IdentifierInfo = this->getInfoFromArgument( args->at(1)->getInstructionArgument());
+	IdentifierInformation * src2IdentifierInfo = this->getInfoFromArgument( args->at(2)->getInstructionArgument());
 
-    string MIPSInstruction;
+	string MIPSInstruction;
 
+	if(instruction->getArithmeticOperator()==ARITHMETIC_OPERATOR_ADD || instruction->getArithmeticOperator()==ARITHMETIC_OPERATOR_SUB){
+		string op;
+		string dst;
+		string src1;
+		string src2;
+
+		switch(instruction->getArithmeticOperator()) {
+		 case ARITHMETIC_OPERATOR_ADD:
+		     op = "add";
+		     break;
+		 case ARITHMETIC_OPERATOR_SUB:
+		     op = "sub";
+		     break;
+		 }
+
+		dst = getRegister(regs->at(0));
+
+
+		  if(regs->at(1) == NO_REGISTER) {
+//            cout << args->at(0) << endl;
+            if(args->at(1)->getInstructionArgument()->getType()==INSTRUCTION_ARGUMENT_TYPE_IMMEDIATE) {
+                ImmediateArgument * immediateArgument = (ImmediateArgument*)args->at(1)->getInstructionArgument();
+					 op += "i";
+                src1 = getMachineImmediate(immediateArgument->getImmediateValue());
+            } else if(args->at(1)->getInstructionArgument()->getType()==INSTRUCTION_ARGUMENT_TYPE_IDENTIFIER) {
+					IdentifierArgument * identifierArgument = (IdentifierArgument*)args->at(1)->getInstructionArgument();
+					IdentifierInformation *identifierInformation = identifierArgument->getIdentifierInformation();
+					 if(identifierInformation->getScopeLevel()==GLOBAL_SCOPE) {
+						  //movl	$_a, 4(%esp)
+						  MIPSInstruction = "\tla $t8, ";
+						  MIPSInstruction += getGlobalVariableLabel(identifierInformation);
+						  gen(MIPSInstruction);
+						  MIPSInstruction = "\tlw $t8, 0($t8)";
+						  gen(MIPSInstruction);
+						  src1 = "$t8";
+					 } else {
+						  MIPSInstruction = "\tlw $t8, ";
+						  MIPSInstruction += getVariableAddress(identifierInformation);
+						  gen(MIPSInstruction);
+						  src1 = "$t8";
+					 }
+            }
+//            else if(args->at(0)->getInstructionArgument()->getType()==INSTRUCTION_ARGUMENT_TYPE_TEMPORARY){
+//
+//            }
+        } else {
+            src1 = getRegister(regs->at(1));
+        }
+
+		if(regs->at(2) == NO_REGISTER) {
+            if(args->at(2)->getInstructionArgument()->getType()==INSTRUCTION_ARGUMENT_TYPE_IMMEDIATE) {
+                ImmediateArgument * immediateArgument = (ImmediateArgument*)args->at(2)->getInstructionArgument();
+                //MIPSInstruction += getMachineImmediate(immediateArgument->getImmediateValue());
+                //MIPSInstruction += ", ";
+					MIPSInstruction = "\tli $t9, ";
+					//MIPSInstruction += getRegister(regs->at(0));
+					//MIPSInstruction += ", ";
+					MIPSInstruction += getMachineImmediate(immediateArgument->getImmediateValue());
+					gen(MIPSInstruction);
+					//src1 = getRegister(regs->at(0));
+					src2 = "$t9";
+                
+            } else if(args->at(2)->getInstructionArgument()->getType()==INSTRUCTION_ARGUMENT_TYPE_IDENTIFIER) {
+				IdentifierArgument * identifierArgument = (IdentifierArgument*)args->at(2)->getInstructionArgument();
+					IdentifierInformation *identifierInformation = identifierArgument->getIdentifierInformation();
+					 /*if(identifierInformation->getScopeLevel()==GLOBAL_SCOPE) {
+						  //movl	$_a, 4(%esp)
+						  MIPSInstruction = "\tla ";
+						  MIPSInstruction += getRegister(regs->at(0));
+						  MIPSInstruction += ", ";
+						  MIPSInstruction += getGlobalVariableLabel(identifierInformation);
+						  gen(MIPSInstruction);
+						  MIPSInstruction = "\tlw ";
+						  MIPSInstruction += getRegister(regs->at(0));
+						  MIPSInstruction += ", 0(";	
+						  MIPSInstruction += getRegister(regs->at(0));
+						  MIPSInstruction += ")";
+						  gen(MIPSInstruction);
+						src1 = getRegister(regs->at(0));
+					 } else {
+						  MIPSInstruction = "\tlw ";
+						  MIPSInstruction += getRegister(regs->at(0));
+						  MIPSInstruction += ", ";
+						  MIPSInstruction += getVariableAddress(identifierInformation);
+						  gen(MIPSInstruction);
+						src1 = getRegister(regs->at(0));
+					 }*/
+					if(identifierInformation->getScopeLevel()==GLOBAL_SCOPE) {
+						  //movl	$_a, 4(%esp)
+						  MIPSInstruction = "\tla $t9, ";
+						  MIPSInstruction += getGlobalVariableLabel(identifierInformation);
+						  gen(MIPSInstruction);
+						  MIPSInstruction = "\tlw $t9, 0($t9)";
+						  gen(MIPSInstruction);
+						  src2 = "$t9";
+					 } else {
+						  MIPSInstruction = "\tlw $t9, ";
+						  MIPSInstruction += getVariableAddress(identifierInformation);
+						  gen(MIPSInstruction);
+						  src2 = "$t9";
+					 }
+            }
+        } else {
+            src2 = getRegister(regs->at(2));
+        }
+
+			MIPSInstruction = "\t";
+			MIPSInstruction += op;
+			MIPSInstruction += " ";
+			MIPSInstruction += dst;
+			MIPSInstruction += ", ";
+			MIPSInstruction += src1;
+			MIPSInstruction += ", ";
+			MIPSInstruction += src2;
+        gen(MIPSInstruction);
+	}else {
+	}
+	/*
     if(instruction->getArithmeticOperator()!=ARITHMETIC_OPERATOR_DIV && instruction->getArithmeticOperator()!=ARITHMETIC_OPERATOR_MOD) {
         if(regs->at(0)!=NO_REGISTER && regs->at(1)!=NO_REGISTER && regs->at(0) != regs->at(1)) {
             MIPSInstruction = "\tmovl ";
@@ -648,6 +766,7 @@ void MIPSArchitecture::genArithmetic(ArithmeticInstruction *instruction)
         }
     }
 
+	
     switch(instruction->getArithmeticOperator()) {
     case ARITHMETIC_OPERATOR_ADD:
         MIPSInstruction = "\tadd ";
@@ -797,7 +916,7 @@ void MIPSArchitecture::genArithmetic(ArithmeticInstruction *instruction)
         gen(MIPSInstruction);
 
     }
-
+*/
     removeVariablesFromRegisters(regs->at(0));
 
     //cout << "HERE ? (1)" << endl;
@@ -917,33 +1036,63 @@ void MIPSArchitecture::genConditionalGoto(ConditionalGotoInstruction *instructio
         break;
     }
 
-	if(regs->at(2) == NO_REGISTER) {
-        if(args->at(2)->getInstructionArgument()->getType()==INSTRUCTION_ARGUMENT_TYPE_IMMEDIATE) {
-            ImmediateArgument * immediateArgument = (ImmediateArgument*)args->at(2)->getInstructionArgument();
-            MIPSInstruction += getMachineImmediate(immediateArgument->getImmediateValue());
-        } else if(args->at(2)->getInstructionArgument()->getType()==INSTRUCTION_ARGUMENT_TYPE_IDENTIFIER) {
-            IdentifierArgument * identifierArgument = (IdentifierArgument*)args->at(2)->getInstructionArgument();
-            MIPSInstruction += getVariableAddress(identifierArgument->getIdentifierInformation());
-        }
-    } else {
-        MIPSInstruction += getRegister(regs->at(2));
-    }
-
-    MIPSInstruction += ", ";
-
-
     if(regs->at(1) == NO_REGISTER) {
         if(args->at(1)->getInstructionArgument()->getType()==INSTRUCTION_ARGUMENT_TYPE_IMMEDIATE) {
             ImmediateArgument * immediateArgument = (ImmediateArgument*)args->at(1)->getInstructionArgument();
             MIPSInstruction += getMachineImmediate(immediateArgument->getImmediateValue());
         } else if(args->at(1)->getInstructionArgument()->getType()==INSTRUCTION_ARGUMENT_TYPE_IDENTIFIER) {
             IdentifierArgument * identifierArgument = (IdentifierArgument*)args->at(1)->getInstructionArgument();
+				IdentifierInformation *identifierInformation = identifierArgument->getIdentifierInformation();
+					 if(identifierInformation->getScopeLevel()==GLOBAL_SCOPE) {
+						  //movl	$_a, 4(%esp)
+						  string MIPSInstruction = "\tla $t8, ";
+						  MIPSInstruction += getGlobalVariableLabel(identifierInformation);
+						  gen(MIPSInstruction);
+						  MIPSInstruction = "\tlw $t8, 0($t8)";
+						  gen(MIPSInstruction);
 
-            MIPSInstruction += getVariableAddress(identifierArgument->getIdentifierInformation());
+					 } else {
+						  string MIPSInstruction = "\tlw $t8, ";
+						  MIPSInstruction += getVariableAddress(identifierInformation);
+						  gen(MIPSInstruction);
+					 }
+				MIPSInstruction += "$t8";
+            //MIPSInstruction += getVariableAddress(identifierArgument->getIdentifierInformation());
+
         }
     } else {
 
         MIPSInstruction += getRegister(regs->at(1));
+    }
+
+    MIPSInstruction += ", ";
+
+ 	if(regs->at(2) == NO_REGISTER) {
+        if(args->at(2)->getInstructionArgument()->getType()==INSTRUCTION_ARGUMENT_TYPE_IMMEDIATE) {
+            ImmediateArgument * immediateArgument = (ImmediateArgument*)args->at(2)->getInstructionArgument();
+            MIPSInstruction += getMachineImmediate(immediateArgument->getImmediateValue());
+        } else if(args->at(2)->getInstructionArgument()->getType()==INSTRUCTION_ARGUMENT_TYPE_IDENTIFIER) {
+            IdentifierArgument * identifierArgument = (IdentifierArgument*)args->at(2)->getInstructionArgument();
+					IdentifierInformation *identifierInformation = identifierArgument->getIdentifierInformation();
+					 if(identifierInformation->getScopeLevel()==GLOBAL_SCOPE) {
+						  //movl	$_a, 4(%esp)
+						  string MIPSInstruction = "\tla $t9, ";
+						  MIPSInstruction += getGlobalVariableLabel(identifierInformation);
+						  gen(MIPSInstruction);
+						  MIPSInstruction = "\tlw $t9, 0($t9)";
+						  gen(MIPSInstruction);
+
+					 } else {
+						  string MIPSInstruction = "\tlw $t9, ";
+						  MIPSInstruction += getVariableAddress(identifierInformation);
+						  gen(MIPSInstruction);
+
+					 }
+				MIPSInstruction += "$t9";
+            //MIPSInstruction += getVariableAddress(identifierArgument->getIdentifierInformation());
+        }
+    } else {
+        MIPSInstruction += getRegister(regs->at(2));
     }
 
     MIPSInstruction += ", ";
@@ -1279,11 +1428,18 @@ void MIPSArchitecture::genLoad(IdentifierInformation *identifierInformation, int
 
 void MIPSArchitecture::genStore(int registerNumber, IdentifierInformation *identifierInformation)
 {
-    string MIPSInstruction = "\tmovl ";
+    string MIPSInstruction = "\tsw ";
     MIPSInstruction += getRegister(registerNumber);
+    MIPSInstruction += ", ";
 
     string address = getVariableAddress( identifierInformation );
-    MIPSInstruction += ", ";
+
+	 if(identifierInformation->getScopeLevel()==GLOBAL_SCOPE) {
+		  string MIPSInstruction = "\tla $t9, ";
+		  MIPSInstruction += getGlobalVariableLabel(identifierInformation);
+		  gen(MIPSInstruction);
+		  address = "0($t9)";
+	 }
     MIPSInstruction += address;
 
     gen( MIPSInstruction );
@@ -1375,14 +1531,19 @@ void MIPSArchitecture::genWrite(IdentifierInformation *identifierInformation)
  
    VariableDescriptor *varDescriptor = getVariableDescriptor(identifierInformation);
    if(varDescriptor->getRegistersList()->empty()){
-       //MIPSInstruction += getVariableAddress(identifierInformation);
-       MIPSInstruction = "\tla $a0, ";
-		MIPSInstruction += getGlobalVariableLabel(identifierInformation);
-		gen(MIPSInstruction);
-
-			MIPSInstruction = "\tlw $a0, 0($a0)";
-			//MIPSInstruction += getVariableAddress( identifierInformation );
-			gen(MIPSInstruction);
+			if(identifierInformation->getScopeLevel()==GLOBAL_SCOPE) {
+				  //movl	$_a, 4(%esp)
+				  MIPSInstruction = "\tla $a0, ";
+				  MIPSInstruction += getGlobalVariableLabel(identifierInformation);
+				  gen(MIPSInstruction);			
+				  MIPSInstruction = "\tlw $a0, 0($a0)";
+				  MIPSInstruction += ", ";
+				  gen(MIPSInstruction);
+			 } else {
+				  MIPSInstruction = "\tlw $a0, ";
+				  MIPSInstruction += getVariableAddress(identifierInformation);
+				  gen(MIPSInstruction);
+			 }
     } else {
 		MIPSInstruction = "\tmove $a0, ";
 		MIPSInstruction += getRegister(varDescriptor->getRegistersList()->front());
