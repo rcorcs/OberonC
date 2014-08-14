@@ -3,6 +3,11 @@
 
 An educational compiler for a subset of Oberon version 1.0
 
+##### Suported Architectures
+* Intel x86
+* Intel x86-64
+* MIPS
+
 ## Quickstart
 
 #### Windows
