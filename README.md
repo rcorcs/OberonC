@@ -47,6 +47,8 @@ Finish support to x64 architecture.
 
 Finish support to MIPS architecture.
 
+Code optimisation.
+
 
 ### Building Dependencies
 
