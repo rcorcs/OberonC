@@ -55,8 +55,6 @@ The MIPS code generation has been tested using the `spim` (MIPS simulator). In o
 
 Finish support to x64 architecture.
 
-Verify support to MIPS architecture.
-
 Code optimisation.
 
 
