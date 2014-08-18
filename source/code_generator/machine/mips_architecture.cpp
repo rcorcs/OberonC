@@ -658,9 +658,17 @@ void MIPSArchitecture::genArithmetic(ArithmeticInstruction *instruction)
 		  if(regs->at(1) == NO_REGISTER) {
 //            cout << args->at(0) << endl;
             if(args->at(1)->getInstructionArgument()->getType()==INSTRUCTION_ARGUMENT_TYPE_IMMEDIATE) {
+		
                 ImmediateArgument * immediateArgument = (ImmediateArgument*)args->at(1)->getInstructionArgument();
-					 op += "i";
-                src1 = getMachineImmediate(immediateArgument->getImmediateValue());
+					 //op += "i";
+                //src1 = getMachineImmediate(immediateArgument->getImmediateValue());
+					MIPSInstruction = "\tli $t8, ";
+					//MIPSInstruction += getRegister(regs->at(0));
+					//MIPSInstruction += ", ";
+					MIPSInstruction += getMachineImmediate(immediateArgument->getImmediateValue());
+					gen(MIPSInstruction);
+					//src1 = getRegister(regs->at(0));
+					src1 = "$t8";
             } else if(args->at(1)->getInstructionArgument()->getType()==INSTRUCTION_ARGUMENT_TYPE_IDENTIFIER) {
 					IdentifierArgument * identifierArgument = (IdentifierArgument*)args->at(1)->getInstructionArgument();
 					IdentifierInformation *identifierInformation = identifierArgument->getIdentifierInformation();
@@ -691,14 +699,14 @@ void MIPSArchitecture::genArithmetic(ArithmeticInstruction *instruction)
                 ImmediateArgument * immediateArgument = (ImmediateArgument*)args->at(2)->getInstructionArgument();
                 //MIPSInstruction += getMachineImmediate(immediateArgument->getImmediateValue());
                 //MIPSInstruction += ", ";
-					MIPSInstruction = "\tli $t9, ";
-					//MIPSInstruction += getRegister(regs->at(0));
-					//MIPSInstruction += ", ";
-					MIPSInstruction += getMachineImmediate(immediateArgument->getImmediateValue());
-					gen(MIPSInstruction);
-					//src1 = getRegister(regs->at(0));
-					src2 = "$t9";
-                
+		MIPSInstruction = "\tli $t9, ";
+		//MIPSInstruction += getRegister(regs->at(0));
+		//MIPSInstruction += ", ";
+		MIPSInstruction += getMachineImmediate(immediateArgument->getImmediateValue());
+		gen(MIPSInstruction);
+		//src1 = getRegister(regs->at(0));
+		src2 = "$t9";
+                //src2 = getMachineImmediate(immediateArgument->getImmediateValue());
             } else if(args->at(2)->getInstructionArgument()->getType()==INSTRUCTION_ARGUMENT_TYPE_IDENTIFIER) {
 				IdentifierArgument * identifierArgument = (IdentifierArgument*)args->at(2)->getInstructionArgument();
 					IdentifierInformation *identifierInformation = identifierArgument->getIdentifierInformation();

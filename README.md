@@ -50,7 +50,7 @@ The build.sh do all the steps. It means that you can just execute the bash.sh pa
 
 Finish support to x64 architecture.
 
-Finish support to MIPS architecture.
+Verify support to MIPS architecture.
 
 Code optimisation.
 
