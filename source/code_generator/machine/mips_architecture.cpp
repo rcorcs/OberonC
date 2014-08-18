@@ -185,7 +185,7 @@ int MIPSArchitecture::getOffset(IdentifierInformation *identifierInformation)
     int offset = 0;
     if(identifierInformation->getCategoryType()==IDENTIFIER_CATEGORY_TYPE_FORMAL_PARAMETER) {
         FormalParameterInformation *formalParamameter = (FormalParameterInformation *)identifierInformation;
-        offset = 4 + formalParamameter->getOffset()*(WORD_SIZE);
+        offset = (formalParamameter->getOffset()-1)*(WORD_SIZE);
     } else if(identifierInformation->getCategoryType()==IDENTIFIER_CATEGORY_TYPE_VARIABLE) {
         VariableInformation *variable = (VariableInformation *)identifierInformation;
         offset = -( variable->getOffset()*(WORD_SIZE) );
@@ -231,7 +231,7 @@ string MIPSArchitecture::getVariableAddress(IdentifierInformation *identifierInf
         //string address = itoa( getOffset(identifierInformation), temp, 10 );
         sprintf(temp, "%d", getOffset(identifierInformation));
         string address = temp;
-        address += "($gp)";
+        address += "($sp)";
         return address;
     }
 }
@@ -1152,24 +1152,43 @@ void MIPSArchitecture::genNop(NopInstruction *instruction)
 
 void MIPSArchitecture::genParam(ParameterInstruction * paramInstruction)
 {
+    
+    //gen("\tpushl %ebp");
+    //gen("\tmovl %esp, %ebp");
+
     vector<int> * regs  = getRegisters(paramInstruction);
     vector<ArgumentInformation *> *args = paramInstruction->getArgumentsInformation();
     string MIPSInstruction;
 
+
     // src2 register
-    MIPSInstruction = "\tpushl ";
+    //MIPSInstruction = "\tpushl ";
+    MIPSInstruction = "\taddi $sp, $sp, -";
+    MIPSInstruction += getMachineImmediate(WORD_SIZE);
+    gen(MIPSInstruction);
     if(regs->at(1) == NO_REGISTER) {
         if(args->at(1)->getInstructionArgument()->getType()==INSTRUCTION_ARGUMENT_TYPE_IMMEDIATE) {
+            MIPSInstruction = "\tli $t8, ";
             ImmediateArgument * immediateArgument = (ImmediateArgument*)args->at(1)->getInstructionArgument();
             MIPSInstruction += getMachineImmediate(immediateArgument->getImmediateValue());
+            gen(MIPSInstruction);
+            MIPSInstruction = "\tsw $t8, 0($sp)";
+            gen(MIPSInstruction);
         } else if(args->at(1)->getInstructionArgument()->getType()==INSTRUCTION_ARGUMENT_TYPE_IDENTIFIER) {
             IdentifierArgument * identifierArgument = (IdentifierArgument*)args->at(1)->getInstructionArgument();
+            MIPSInstruction = "\tlw $t8, ";
             MIPSInstruction += getVariableAddress(identifierArgument->getIdentifierInformation());
+            gen(MIPSInstruction);
+            MIPSInstruction = "\tsw $t8, 0($sp)";
+            gen(MIPSInstruction);
         }
     } else {
+        MIPSInstruction = "\tsw ";
         MIPSInstruction += getRegister(regs->at(1));
+        MIPSInstruction += ", 0($sp)";
+        gen(MIPSInstruction);
     }
-    gen(MIPSInstruction);
+    //gen(MIPSInstruction);
 }
 
 
@@ -1318,9 +1337,19 @@ void MIPSArchitecture::pushRegisters()
     string MIPSInstruction;
     for(int reg = 0; reg<getTotalRegisters(); reg++) {
         if(!getRegisterDescriptor(reg)->getVariablesList()->empty()) {
-            MIPSInstruction = "\tpushl ";
-            MIPSInstruction += getRegister(reg);
+            //MIPSInstruction = "\tpushl ";
+            //MIPSInstruction += getRegister(reg);
+
+	    //addi $sp, $sp, -4  # Decrement stack pointer by 4
+            //sw   $r3, 0($sp)
+            MIPSInstruction = "\taddi $sp, $sp, -";
+            MIPSInstruction += getMachineImmediate(WORD_SIZE);
             gen(MIPSInstruction);
+            MIPSInstruction = "\tsw ";
+            MIPSInstruction += getRegister(reg);
+            MIPSInstruction += ", 0($sp)";
+            gen(MIPSInstruction);
+
         }
     }
 }
@@ -1780,7 +1809,7 @@ void MIPSArchitecture::genPrologue(FunctionInformation * functionInfo)
         size_t variablesCount = functionInfo->getVariableList().size() * WORD_SIZE;
 
         if(variablesCount > 0) {
-            sstream << "\tsubi $sp, $sp, " << (int)variablesCount;
+            sstream << "\taddi $sp, $sp, -" << (int)variablesCount;
             gen(sstream.str());
 
         }
