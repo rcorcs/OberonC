@@ -33,7 +33,7 @@ Grammar
     9 constdecl: TOKEN_TYPE_CONST constdecl_list
 
    10 constdecl_list: constdecl_list constlist TOKEN_TYPE_COLON datatype TOKEN_TYPE_SEMICOLON
-   11               | /* empty */
+   11               | %empty
 
    12 constlist: constlist TOKEN_TYPE_COMMA const_addinfo TOKEN_TYPE_ASSIGN expression
    13          | const_addinfo TOKEN_TYPE_ASSIGN expression
@@ -43,7 +43,7 @@ Grammar
    15 vardecl: TOKEN_TYPE_VAR vardecl_list
 
    16 vardecl_list: vardecl_list varlist TOKEN_TYPE_COLON datatype TOKEN_TYPE_SEMICOLON
-   17             | /* empty */
+   17             | %empty
 
    18 varlist: varlist TOKEN_TYPE_COMMA var_addinfo
    19        | var_addinfo
@@ -54,7 +54,7 @@ Grammar
    22         | TOKEN_TYPE_INTEGER
 
    23 procdecl_list: procdecl_list procdecl
-   24              | /* empty */
+   24              | %empty
 
    25 procdecl: procheader procbody
 
@@ -77,7 +77,7 @@ Grammar
    37 formalpars: TOKEN_TYPE_LEFT_BRACKET fpardecl_opt_list TOKEN_TYPE_RIGHT_BRACKET
 
    38 fpardecl_opt_list: fpardecl_list
-   39                  | /* empty */
+   39                  | %empty
 
    40 fpardecl_list: fpardecl_list TOKEN_TYPE_SEMICOLON fparlist TOKEN_TYPE_COLON datatype
    41              | fparlist TOKEN_TYPE_COLON datatype
@@ -88,7 +88,7 @@ Grammar
    44 fpar_addinfo: TOKEN_TYPE_IDENTIFIER
 
    45 statements: statements statement TOKEN_TYPE_SEMICOLON
-   46           | /* empty */
+   46           | %empty
    47           | statements statement
 
    48 expression: expression TOKEN_TYPE_OR andexp
@@ -160,7 +160,7 @@ Grammar
 
    97 elseif_opt_list: TOKEN_TYPE_ELSIF expression TOKEN_TYPE_THEN statements elseif_opt_list
    98                | TOKEN_TYPE_ELSE statements
-   99                | /* empty */
+   99                | %empty
   100                | TOKEN_TYPE_ELSIF expression statements elseif_opt_list
 
   101 repetition: TOKEN_TYPE_WHILE expression TOKEN_TYPE_DO statements TOKEN_TYPE_END
@@ -341,7 +341,7 @@ io_parameter (102)
     on left: 112 113, on right: 107 110
 
 
-state 0
+State 0
 
     0 $accept: . module $end
 
@@ -350,7 +350,7 @@ state 0
     module  go to state 2
 
 
-state 1
+State 1
 
     1 module: TOKEN_TYPE_MODULE . module_create_scope TOKEN_TYPE_SEMICOLON declarations TOKEN_TYPE_BEGIN statements TOKEN_TYPE_END module_remove_scope TOKEN_TYPE_FULL_STOP
     2       | TOKEN_TYPE_MODULE . module_create_scope TOKEN_TYPE_SEMICOLON declarations TOKEN_TYPE_BEGIN statements TOKEN_TYPE_END module_remove_scope
@@ -360,21 +360,21 @@ state 1
     module_create_scope  go to state 4
 
 
-state 2
+State 2
 
     0 $accept: module . $end
 
     $end  shift, and go to state 5
 
 
-state 3
+State 3
 
     3 module_create_scope: TOKEN_TYPE_IDENTIFIER .
 
     $default  reduce using rule 3 (module_create_scope)
 
 
-state 4
+State 4
 
     1 module: TOKEN_TYPE_MODULE module_create_scope . TOKEN_TYPE_SEMICOLON declarations TOKEN_TYPE_BEGIN statements TOKEN_TYPE_END module_remove_scope TOKEN_TYPE_FULL_STOP
     2       | TOKEN_TYPE_MODULE module_create_scope . TOKEN_TYPE_SEMICOLON declarations TOKEN_TYPE_BEGIN statements TOKEN_TYPE_END module_remove_scope
@@ -382,14 +382,14 @@ state 4
     TOKEN_TYPE_SEMICOLON  shift, and go to state 6
 
 
-state 5
+State 5
 
     0 $accept: module $end .
 
     $default  accept
 
 
-state 6
+State 6
 
     1 module: TOKEN_TYPE_MODULE module_create_scope TOKEN_TYPE_SEMICOLON . declarations TOKEN_TYPE_BEGIN statements TOKEN_TYPE_END module_remove_scope TOKEN_TYPE_FULL_STOP
     2       | TOKEN_TYPE_MODULE module_create_scope TOKEN_TYPE_SEMICOLON . declarations TOKEN_TYPE_BEGIN statements TOKEN_TYPE_END module_remove_scope
@@ -405,7 +405,7 @@ state 6
     procdecl_list  go to state 12
 
 
-state 7
+State 7
 
     9 constdecl: TOKEN_TYPE_CONST . constdecl_list
 
@@ -414,7 +414,7 @@ state 7
     constdecl_list  go to state 13
 
 
-state 8
+State 8
 
    15 vardecl: TOKEN_TYPE_VAR . vardecl_list
 
@@ -423,7 +423,7 @@ state 8
     vardecl_list  go to state 14
 
 
-state 9
+State 9
 
     1 module: TOKEN_TYPE_MODULE module_create_scope TOKEN_TYPE_SEMICOLON declarations . TOKEN_TYPE_BEGIN statements TOKEN_TYPE_END module_remove_scope TOKEN_TYPE_FULL_STOP
     2       | TOKEN_TYPE_MODULE module_create_scope TOKEN_TYPE_SEMICOLON declarations . TOKEN_TYPE_BEGIN statements TOKEN_TYPE_END module_remove_scope
@@ -431,7 +431,7 @@ state 9
     TOKEN_TYPE_BEGIN  shift, and go to state 15
 
 
-state 10
+State 10
 
     5 declarations: constdecl . vardecl procdecl_list
     6             | constdecl . procdecl_list
@@ -444,7 +444,7 @@ state 10
     procdecl_list  go to state 17
 
 
-state 11
+State 11
 
     7 declarations: vardecl . procdecl_list
 
@@ -453,7 +453,7 @@ state 11
     procdecl_list  go to state 18
 
 
-state 12
+State 12
 
     8 declarations: procdecl_list .
    23 procdecl_list: procdecl_list . procdecl
@@ -467,7 +467,7 @@ state 12
     procheader  go to state 22
 
 
-state 13
+State 13
 
     9 constdecl: TOKEN_TYPE_CONST constdecl_list .
    10 constdecl_list: constdecl_list . constlist TOKEN_TYPE_COLON datatype TOKEN_TYPE_SEMICOLON
@@ -480,7 +480,7 @@ state 13
     const_addinfo  go to state 25
 
 
-state 14
+State 14
 
    15 vardecl: TOKEN_TYPE_VAR vardecl_list .
    16 vardecl_list: vardecl_list . varlist TOKEN_TYPE_COLON datatype TOKEN_TYPE_SEMICOLON
@@ -493,7 +493,7 @@ state 14
     var_addinfo  go to state 28
 
 
-state 15
+State 15
 
     1 module: TOKEN_TYPE_MODULE module_create_scope TOKEN_TYPE_SEMICOLON declarations TOKEN_TYPE_BEGIN . statements TOKEN_TYPE_END module_remove_scope TOKEN_TYPE_FULL_STOP
     2       | TOKEN_TYPE_MODULE module_create_scope TOKEN_TYPE_SEMICOLON declarations TOKEN_TYPE_BEGIN . statements TOKEN_TYPE_END module_remove_scope
@@ -503,7 +503,7 @@ state 15
     statements  go to state 29
 
 
-state 16
+State 16
 
     5 declarations: constdecl vardecl . procdecl_list
 
@@ -512,7 +512,7 @@ state 16
     procdecl_list  go to state 30
 
 
-state 17
+State 17
 
     6 declarations: constdecl procdecl_list .
    23 procdecl_list: procdecl_list . procdecl
@@ -526,7 +526,7 @@ state 17
     procheader  go to state 22
 
 
-state 18
+State 18
 
     7 declarations: vardecl procdecl_list .
    23 procdecl_list: procdecl_list . procdecl
@@ -540,7 +540,7 @@ state 18
     procheader  go to state 22
 
 
-state 19
+State 19
 
    26 procheader: TOKEN_TYPE_PROCEDURE . procheader_create_scope formalpars TOKEN_TYPE_SEMICOLON
    28           | TOKEN_TYPE_PROCEDURE . procheader_create_scope formalpars
@@ -550,7 +550,7 @@ state 19
     procheader_create_scope  go to state 32
 
 
-state 20
+State 20
 
    27 procheader: TOKEN_TYPE_FUNCTION . funcheader_create_scope formalpars TOKEN_TYPE_COLON datatype TOKEN_TYPE_SEMICOLON
    29           | TOKEN_TYPE_FUNCTION . funcheader_create_scope formalpars TOKEN_TYPE_COLON datatype
@@ -561,14 +561,14 @@ state 20
     funcheader_create_scope  go to state 34
 
 
-state 21
+State 21
 
    23 procdecl_list: procdecl_list procdecl .
 
     $default  reduce using rule 23 (procdecl_list)
 
 
-state 22
+State 22
 
    25 procdecl: procheader . procbody
 
@@ -579,14 +579,14 @@ state 22
     procbody  go to state 37
 
 
-state 23
+State 23
 
    14 const_addinfo: TOKEN_TYPE_IDENTIFIER .
 
     $default  reduce using rule 14 (const_addinfo)
 
 
-state 24
+State 24
 
    10 constdecl_list: constdecl_list constlist . TOKEN_TYPE_COLON datatype TOKEN_TYPE_SEMICOLON
    12 constlist: constlist . TOKEN_TYPE_COMMA const_addinfo TOKEN_TYPE_ASSIGN expression
@@ -595,21 +595,21 @@ state 24
     TOKEN_TYPE_COMMA  shift, and go to state 39
 
 
-state 25
+State 25
 
    13 constlist: const_addinfo . TOKEN_TYPE_ASSIGN expression
 
     TOKEN_TYPE_ASSIGN  shift, and go to state 40
 
 
-state 26
+State 26
 
    20 var_addinfo: TOKEN_TYPE_IDENTIFIER .
 
     $default  reduce using rule 20 (var_addinfo)
 
 
-state 27
+State 27
 
    16 vardecl_list: vardecl_list varlist . TOKEN_TYPE_COLON datatype TOKEN_TYPE_SEMICOLON
    18 varlist: varlist . TOKEN_TYPE_COMMA var_addinfo
@@ -618,14 +618,14 @@ state 27
     TOKEN_TYPE_COMMA  shift, and go to state 42
 
 
-state 28
+State 28
 
    19 varlist: var_addinfo .
 
     $default  reduce using rule 19 (varlist)
 
 
-state 29
+State 29
 
     1 module: TOKEN_TYPE_MODULE module_create_scope TOKEN_TYPE_SEMICOLON declarations TOKEN_TYPE_BEGIN statements . TOKEN_TYPE_END module_remove_scope TOKEN_TYPE_FULL_STOP
     2       | TOKEN_TYPE_MODULE module_create_scope TOKEN_TYPE_SEMICOLON declarations TOKEN_TYPE_BEGIN statements . TOKEN_TYPE_END module_remove_scope
@@ -654,7 +654,7 @@ state 29
     io_statement     go to state 61
 
 
-state 30
+State 30
 
     5 declarations: constdecl vardecl procdecl_list .
    23 procdecl_list: procdecl_list . procdecl
@@ -668,14 +668,14 @@ state 30
     procheader  go to state 22
 
 
-state 31
+State 31
 
    31 procheader_create_scope: TOKEN_TYPE_IDENTIFIER .
 
     $default  reduce using rule 31 (procheader_create_scope)
 
 
-state 32
+State 32
 
    26 procheader: TOKEN_TYPE_PROCEDURE procheader_create_scope . formalpars TOKEN_TYPE_SEMICOLON
    28           | TOKEN_TYPE_PROCEDURE procheader_create_scope . formalpars
@@ -685,14 +685,14 @@ state 32
     formalpars  go to state 63
 
 
-state 33
+State 33
 
    32 funcheader_create_scope: TOKEN_TYPE_IDENTIFIER .
 
     $default  reduce using rule 32 (funcheader_create_scope)
 
 
-state 34
+State 34
 
    27 procheader: TOKEN_TYPE_FUNCTION funcheader_create_scope . formalpars TOKEN_TYPE_COLON datatype TOKEN_TYPE_SEMICOLON
    29           | TOKEN_TYPE_FUNCTION funcheader_create_scope . formalpars TOKEN_TYPE_COLON datatype
@@ -703,7 +703,7 @@ state 34
     formalpars  go to state 64
 
 
-state 35
+State 35
 
    34 procbody: TOKEN_TYPE_BEGIN . statements TOKEN_TYPE_END procbody_remove_scope TOKEN_TYPE_SEMICOLON
    35         | TOKEN_TYPE_BEGIN . statements TOKEN_TYPE_END procbody_remove_scope
@@ -713,21 +713,21 @@ state 35
     statements  go to state 65
 
 
-state 36
+State 36
 
    33 procbody: vardecl . TOKEN_TYPE_BEGIN statements TOKEN_TYPE_END procbody_remove_scope TOKEN_TYPE_SEMICOLON
 
     TOKEN_TYPE_BEGIN  shift, and go to state 66
 
 
-state 37
+State 37
 
    25 procdecl: procheader procbody .
 
     $default  reduce using rule 25 (procdecl)
 
 
-state 38
+State 38
 
    10 constdecl_list: constdecl_list constlist TOKEN_TYPE_COLON . datatype TOKEN_TYPE_SEMICOLON
 
@@ -737,7 +737,7 @@ state 38
     datatype  go to state 69
 
 
-state 39
+State 39
 
    12 constlist: constlist TOKEN_TYPE_COMMA . const_addinfo TOKEN_TYPE_ASSIGN expression
 
@@ -746,7 +746,7 @@ state 39
     const_addinfo  go to state 70
 
 
-state 40
+State 40
 
    13 constlist: const_addinfo TOKEN_TYPE_ASSIGN . expression
 
@@ -770,7 +770,7 @@ state 40
     funccall         go to state 87
 
 
-state 41
+State 41
 
    16 vardecl_list: vardecl_list varlist TOKEN_TYPE_COLON . datatype TOKEN_TYPE_SEMICOLON
 
@@ -780,7 +780,7 @@ state 41
     datatype  go to state 88
 
 
-state 42
+State 42
 
    18 varlist: varlist TOKEN_TYPE_COMMA . var_addinfo
 
@@ -789,7 +789,7 @@ state 42
     var_addinfo  go to state 89
 
 
-state 43
+State 43
 
    76 checkIdentifier: TOKEN_TYPE_IDENTIFIER .
    80 proccall: TOKEN_TYPE_IDENTIFIER . actualpar
@@ -801,7 +801,7 @@ state 43
     actualpar  go to state 91
 
 
-state 44
+State 44
 
     1 module: TOKEN_TYPE_MODULE module_create_scope TOKEN_TYPE_SEMICOLON declarations TOKEN_TYPE_BEGIN statements TOKEN_TYPE_END . module_remove_scope TOKEN_TYPE_FULL_STOP
     2       | TOKEN_TYPE_MODULE module_create_scope TOKEN_TYPE_SEMICOLON declarations TOKEN_TYPE_BEGIN statements TOKEN_TYPE_END . module_remove_scope
@@ -811,7 +811,7 @@ state 44
     module_remove_scope  go to state 93
 
 
-state 45
+State 45
 
    95 conditional: TOKEN_TYPE_IF . expression TOKEN_TYPE_THEN statements elseif_opt_list TOKEN_TYPE_END
    96            | TOKEN_TYPE_IF . expression statements elseif_opt_list TOKEN_TYPE_END
@@ -836,7 +836,7 @@ state 45
     funccall         go to state 87
 
 
-state 46
+State 46
 
   101 repetition: TOKEN_TYPE_WHILE . expression TOKEN_TYPE_DO statements TOKEN_TYPE_END
   104           | TOKEN_TYPE_WHILE . expression statements TOKEN_TYPE_END
@@ -861,7 +861,7 @@ state 46
     funccall         go to state 87
 
 
-state 47
+State 47
 
   102 repetition: TOKEN_TYPE_REPEAT . statements TOKEN_TYPE_UNTIL expression
 
@@ -870,7 +870,7 @@ state 47
     statements  go to state 96
 
 
-state 48
+State 48
 
   103 repetition: TOKEN_TYPE_FOR . assignment TOKEN_TYPE_TO expression TOKEN_TYPE_DO statements TOKEN_TYPE_END
   105           | TOKEN_TYPE_FOR . assignment expression TOKEN_TYPE_DO statements TOKEN_TYPE_END
@@ -882,21 +882,21 @@ state 48
     assignment       go to state 98
 
 
-state 49
+State 49
 
    91 statement: TOKEN_TYPE_CONTINUE .
 
     $default  reduce using rule 91 (statement)
 
 
-state 50
+State 50
 
    92 statement: TOKEN_TYPE_BREAK .
 
     $default  reduce using rule 92 (statement)
 
 
-state 51
+State 51
 
    93 statement: TOKEN_TYPE_RETURN . expression
 
@@ -920,14 +920,14 @@ state 51
     funccall         go to state 87
 
 
-state 52
+State 52
 
   107 io_statement: TOKEN_TYPE_WRITE . TOKEN_TYPE_LEFT_BRACKET io_parameter TOKEN_TYPE_RIGHT_BRACKET
 
     TOKEN_TYPE_LEFT_BRACKET  shift, and go to state 100
 
 
-state 53
+State 53
 
   108 io_statement: TOKEN_TYPE_WRITELN .
   109             | TOKEN_TYPE_WRITELN . TOKEN_TYPE_LEFT_BRACKET TOKEN_TYPE_RIGHT_BRACKET
@@ -938,28 +938,28 @@ state 53
     $default  reduce using rule 108 (io_statement)
 
 
-state 54
+State 54
 
   111 io_statement: TOKEN_TYPE_READ . TOKEN_TYPE_LEFT_BRACKET checkIdentifier TOKEN_TYPE_RIGHT_BRACKET
 
     TOKEN_TYPE_LEFT_BRACKET  shift, and go to state 102
 
 
-state 55
+State 55
 
    94 assignment: checkIdentifier . TOKEN_TYPE_ASSIGN expression
 
     TOKEN_TYPE_ASSIGN  shift, and go to state 103
 
 
-state 56
+State 56
 
    89 statement: proccall .
 
     $default  reduce using rule 89 (statement)
 
 
-state 57
+State 57
 
    45 statements: statements statement . TOKEN_TYPE_SEMICOLON
    47           | statements statement .
@@ -969,35 +969,35 @@ state 57
     $default  reduce using rule 47 (statements)
 
 
-state 58
+State 58
 
    86 statement: assignment .
 
     $default  reduce using rule 86 (statement)
 
 
-state 59
+State 59
 
    87 statement: conditional .
 
     $default  reduce using rule 87 (statement)
 
 
-state 60
+State 60
 
    88 statement: repetition .
 
     $default  reduce using rule 88 (statement)
 
 
-state 61
+State 61
 
    90 statement: io_statement .
 
     $default  reduce using rule 90 (statement)
 
 
-state 62
+State 62
 
    37 formalpars: TOKEN_TYPE_LEFT_BRACKET . fpardecl_opt_list TOKEN_TYPE_RIGHT_BRACKET
 
@@ -1011,7 +1011,7 @@ state 62
     fpar_addinfo       go to state 109
 
 
-state 63
+State 63
 
    26 procheader: TOKEN_TYPE_PROCEDURE procheader_create_scope formalpars . TOKEN_TYPE_SEMICOLON
    28           | TOKEN_TYPE_PROCEDURE procheader_create_scope formalpars .
@@ -1021,7 +1021,7 @@ state 63
     $default  reduce using rule 28 (procheader)
 
 
-state 64
+State 64
 
    27 procheader: TOKEN_TYPE_FUNCTION funcheader_create_scope formalpars . TOKEN_TYPE_COLON datatype TOKEN_TYPE_SEMICOLON
    29           | TOKEN_TYPE_FUNCTION funcheader_create_scope formalpars . TOKEN_TYPE_COLON datatype
@@ -1031,7 +1031,7 @@ state 64
     TOKEN_TYPE_SEMICOLON  shift, and go to state 112
 
 
-state 65
+State 65
 
    34 procbody: TOKEN_TYPE_BEGIN statements . TOKEN_TYPE_END procbody_remove_scope TOKEN_TYPE_SEMICOLON
    35         | TOKEN_TYPE_BEGIN statements . TOKEN_TYPE_END procbody_remove_scope
@@ -1060,7 +1060,7 @@ state 65
     io_statement     go to state 61
 
 
-state 66
+State 66
 
    33 procbody: vardecl TOKEN_TYPE_BEGIN . statements TOKEN_TYPE_END procbody_remove_scope TOKEN_TYPE_SEMICOLON
 
@@ -1069,35 +1069,35 @@ state 66
     statements  go to state 114
 
 
-state 67
+State 67
 
    21 datatype: TOKEN_TYPE_BOOLEAN .
 
     $default  reduce using rule 21 (datatype)
 
 
-state 68
+State 68
 
    22 datatype: TOKEN_TYPE_INTEGER .
 
     $default  reduce using rule 22 (datatype)
 
 
-state 69
+State 69
 
    10 constdecl_list: constdecl_list constlist TOKEN_TYPE_COLON datatype . TOKEN_TYPE_SEMICOLON
 
     TOKEN_TYPE_SEMICOLON  shift, and go to state 115
 
 
-state 70
+State 70
 
    12 constlist: constlist TOKEN_TYPE_COMMA const_addinfo . TOKEN_TYPE_ASSIGN expression
 
     TOKEN_TYPE_ASSIGN  shift, and go to state 116
 
 
-state 71
+State 71
 
    76 checkIdentifier: TOKEN_TYPE_IDENTIFIER .
    79 funccall: TOKEN_TYPE_IDENTIFIER . actualpar
@@ -1110,21 +1110,21 @@ state 71
     actualpar  go to state 117
 
 
-state 72
+State 72
 
    77 literal: TOKEN_TYPE_BOOLEAN_LITERAL .
 
     $default  reduce using rule 77 (literal)
 
 
-state 73
+State 73
 
    78 literal: TOKEN_TYPE_INTEGER_LITERAL .
 
     $default  reduce using rule 78 (literal)
 
 
-state 74
+State 74
 
    69 factor: TOKEN_TYPE_NOT . primary
 
@@ -1139,7 +1139,7 @@ state 74
     funccall         go to state 87
 
 
-state 75
+State 75
 
    71 primary: TOKEN_TYPE_LEFT_BRACKET . expression TOKEN_TYPE_RIGHT_BRACKET
    75        | TOKEN_TYPE_LEFT_BRACKET . expression
@@ -1164,7 +1164,7 @@ state 75
     funccall         go to state 87
 
 
-state 76
+State 76
 
    67 factor: TOKEN_TYPE_PLUS . primary
 
@@ -1179,7 +1179,7 @@ state 76
     funccall         go to state 87
 
 
-state 77
+State 77
 
    68 factor: TOKEN_TYPE_MINUS . primary
 
@@ -1194,7 +1194,7 @@ state 77
     funccall         go to state 87
 
 
-state 78
+State 78
 
    13 constlist: const_addinfo TOKEN_TYPE_ASSIGN expression .
    48 expression: expression . TOKEN_TYPE_OR andexp
@@ -1204,7 +1204,7 @@ state 78
     $default  reduce using rule 13 (constlist)
 
 
-state 79
+State 79
 
    49 expression: andexp .
    50 andexp: andexp . TOKEN_TYPE_AND relexp
@@ -1215,14 +1215,14 @@ state 79
     $default        reduce using rule 49 (expression)
 
 
-state 80
+State 80
 
    51 andexp: relexp .
 
     $default  reduce using rule 51 (andexp)
 
 
-state 81
+State 81
 
    52 relexp: aritexp . rel_op aritexp
    53       | aritexp .
@@ -1251,7 +1251,7 @@ state 81
     rel_op  go to state 132
 
 
-state 82
+State 82
 
    62 aritexp: term .
    63 term: term . TOKEN_TYPE_ASTERISK factor
@@ -1268,56 +1268,56 @@ state 82
     $default             reduce using rule 62 (aritexp)
 
 
-state 83
+State 83
 
    66 term: factor .
 
     $default  reduce using rule 66 (term)
 
 
-state 84
+State 84
 
    70 factor: primary .
 
     $default  reduce using rule 70 (factor)
 
 
-state 85
+State 85
 
    74 primary: checkIdentifier .
 
     $default  reduce using rule 74 (primary)
 
 
-state 86
+State 86
 
    73 primary: literal .
 
     $default  reduce using rule 73 (primary)
 
 
-state 87
+State 87
 
    72 primary: funccall .
 
     $default  reduce using rule 72 (primary)
 
 
-state 88
+State 88
 
    16 vardecl_list: vardecl_list varlist TOKEN_TYPE_COLON datatype . TOKEN_TYPE_SEMICOLON
 
     TOKEN_TYPE_SEMICOLON  shift, and go to state 136
 
 
-state 89
+State 89
 
    18 varlist: varlist TOKEN_TYPE_COMMA var_addinfo .
 
     $default  reduce using rule 18 (varlist)
 
 
-state 90
+State 90
 
    81 actualpar: TOKEN_TYPE_LEFT_BRACKET . parameters_list TOKEN_TYPE_RIGHT_BRACKET
    82          | TOKEN_TYPE_LEFT_BRACKET . TOKEN_TYPE_RIGHT_BRACKET
@@ -1345,21 +1345,21 @@ state 90
     parameter        go to state 140
 
 
-state 91
+State 91
 
    80 proccall: TOKEN_TYPE_IDENTIFIER actualpar .
 
     $default  reduce using rule 80 (proccall)
 
 
-state 92
+State 92
 
     4 module_remove_scope: TOKEN_TYPE_IDENTIFIER .
 
     $default  reduce using rule 4 (module_remove_scope)
 
 
-state 93
+State 93
 
     1 module: TOKEN_TYPE_MODULE module_create_scope TOKEN_TYPE_SEMICOLON declarations TOKEN_TYPE_BEGIN statements TOKEN_TYPE_END module_remove_scope . TOKEN_TYPE_FULL_STOP
     2       | TOKEN_TYPE_MODULE module_create_scope TOKEN_TYPE_SEMICOLON declarations TOKEN_TYPE_BEGIN statements TOKEN_TYPE_END module_remove_scope .
@@ -1369,7 +1369,7 @@ state 93
     $default  reduce using rule 2 (module)
 
 
-state 94
+State 94
 
    48 expression: expression . TOKEN_TYPE_OR andexp
    95 conditional: TOKEN_TYPE_IF expression . TOKEN_TYPE_THEN statements elseif_opt_list TOKEN_TYPE_END
@@ -1383,7 +1383,7 @@ state 94
     statements  go to state 143
 
 
-state 95
+State 95
 
    48 expression: expression . TOKEN_TYPE_OR andexp
   101 repetition: TOKEN_TYPE_WHILE expression . TOKEN_TYPE_DO statements TOKEN_TYPE_END
@@ -1397,7 +1397,7 @@ state 95
     statements  go to state 145
 
 
-state 96
+State 96
 
    45 statements: statements . statement TOKEN_TYPE_SEMICOLON
    47           | statements . statement
@@ -1425,14 +1425,14 @@ state 96
     io_statement     go to state 61
 
 
-state 97
+State 97
 
    76 checkIdentifier: TOKEN_TYPE_IDENTIFIER .
 
     $default  reduce using rule 76 (checkIdentifier)
 
 
-state 98
+State 98
 
   103 repetition: TOKEN_TYPE_FOR assignment . TOKEN_TYPE_TO expression TOKEN_TYPE_DO statements TOKEN_TYPE_END
   105           | TOKEN_TYPE_FOR assignment . expression TOKEN_TYPE_DO statements TOKEN_TYPE_END
@@ -1459,7 +1459,7 @@ state 98
     funccall         go to state 87
 
 
-state 99
+State 99
 
    48 expression: expression . TOKEN_TYPE_OR andexp
    93 statement: TOKEN_TYPE_RETURN expression .
@@ -1469,7 +1469,7 @@ state 99
     $default  reduce using rule 93 (statement)
 
 
-state 100
+State 100
 
   107 io_statement: TOKEN_TYPE_WRITE TOKEN_TYPE_LEFT_BRACKET . io_parameter TOKEN_TYPE_RIGHT_BRACKET
 
@@ -1496,7 +1496,7 @@ state 100
     io_parameter     go to state 151
 
 
-state 101
+State 101
 
   109 io_statement: TOKEN_TYPE_WRITELN TOKEN_TYPE_LEFT_BRACKET . TOKEN_TYPE_RIGHT_BRACKET
   110             | TOKEN_TYPE_WRITELN TOKEN_TYPE_LEFT_BRACKET . io_parameter TOKEN_TYPE_RIGHT_BRACKET
@@ -1525,7 +1525,7 @@ state 101
     io_parameter     go to state 153
 
 
-state 102
+State 102
 
   111 io_statement: TOKEN_TYPE_READ TOKEN_TYPE_LEFT_BRACKET . checkIdentifier TOKEN_TYPE_RIGHT_BRACKET
 
@@ -1534,7 +1534,7 @@ state 102
     checkIdentifier  go to state 154
 
 
-state 103
+State 103
 
    94 assignment: checkIdentifier TOKEN_TYPE_ASSIGN . expression
 
@@ -1558,28 +1558,28 @@ state 103
     funccall         go to state 87
 
 
-state 104
+State 104
 
    45 statements: statements statement TOKEN_TYPE_SEMICOLON .
 
     $default  reduce using rule 45 (statements)
 
 
-state 105
+State 105
 
    44 fpar_addinfo: TOKEN_TYPE_IDENTIFIER .
 
     $default  reduce using rule 44 (fpar_addinfo)
 
 
-state 106
+State 106
 
    37 formalpars: TOKEN_TYPE_LEFT_BRACKET fpardecl_opt_list . TOKEN_TYPE_RIGHT_BRACKET
 
     TOKEN_TYPE_RIGHT_BRACKET  shift, and go to state 156
 
 
-state 107
+State 107
 
    38 fpardecl_opt_list: fpardecl_list .
    40 fpardecl_list: fpardecl_list . TOKEN_TYPE_SEMICOLON fparlist TOKEN_TYPE_COLON datatype
@@ -1589,7 +1589,7 @@ state 107
     $default  reduce using rule 38 (fpardecl_opt_list)
 
 
-state 108
+State 108
 
    41 fpardecl_list: fparlist . TOKEN_TYPE_COLON datatype
    42 fparlist: fparlist . TOKEN_TYPE_COMMA fpar_addinfo
@@ -1598,21 +1598,21 @@ state 108
     TOKEN_TYPE_COMMA  shift, and go to state 159
 
 
-state 109
+State 109
 
    43 fparlist: fpar_addinfo .
 
     $default  reduce using rule 43 (fparlist)
 
 
-state 110
+State 110
 
    26 procheader: TOKEN_TYPE_PROCEDURE procheader_create_scope formalpars TOKEN_TYPE_SEMICOLON .
 
     $default  reduce using rule 26 (procheader)
 
 
-state 111
+State 111
 
    27 procheader: TOKEN_TYPE_FUNCTION funcheader_create_scope formalpars TOKEN_TYPE_COLON . datatype TOKEN_TYPE_SEMICOLON
    29           | TOKEN_TYPE_FUNCTION funcheader_create_scope formalpars TOKEN_TYPE_COLON . datatype
@@ -1623,14 +1623,14 @@ state 111
     datatype  go to state 160
 
 
-state 112
+State 112
 
    30 procheader: TOKEN_TYPE_FUNCTION funcheader_create_scope formalpars TOKEN_TYPE_SEMICOLON .
 
     $default  reduce using rule 30 (procheader)
 
 
-state 113
+State 113
 
    34 procbody: TOKEN_TYPE_BEGIN statements TOKEN_TYPE_END . procbody_remove_scope TOKEN_TYPE_SEMICOLON
    35         | TOKEN_TYPE_BEGIN statements TOKEN_TYPE_END . procbody_remove_scope
@@ -1640,7 +1640,7 @@ state 113
     procbody_remove_scope  go to state 162
 
 
-state 114
+State 114
 
    33 procbody: vardecl TOKEN_TYPE_BEGIN statements . TOKEN_TYPE_END procbody_remove_scope TOKEN_TYPE_SEMICOLON
    45 statements: statements . statement TOKEN_TYPE_SEMICOLON
@@ -1668,14 +1668,14 @@ state 114
     io_statement     go to state 61
 
 
-state 115
+State 115
 
    10 constdecl_list: constdecl_list constlist TOKEN_TYPE_COLON datatype TOKEN_TYPE_SEMICOLON .
 
     $default  reduce using rule 10 (constdecl_list)
 
 
-state 116
+State 116
 
    12 constlist: constlist TOKEN_TYPE_COMMA const_addinfo TOKEN_TYPE_ASSIGN . expression
 
@@ -1699,21 +1699,21 @@ state 116
     funccall         go to state 87
 
 
-state 117
+State 117
 
    79 funccall: TOKEN_TYPE_IDENTIFIER actualpar .
 
     $default  reduce using rule 79 (funccall)
 
 
-state 118
+State 118
 
    69 factor: TOKEN_TYPE_NOT primary .
 
     $default  reduce using rule 69 (factor)
 
 
-state 119
+State 119
 
    48 expression: expression . TOKEN_TYPE_OR andexp
    71 primary: TOKEN_TYPE_LEFT_BRACKET expression . TOKEN_TYPE_RIGHT_BRACKET
@@ -1727,21 +1727,21 @@ state 119
     $default                  reduce using rule 75 (primary)
 
 
-state 120
+State 120
 
    67 factor: TOKEN_TYPE_PLUS primary .
 
     $default  reduce using rule 67 (factor)
 
 
-state 121
+State 121
 
    68 factor: TOKEN_TYPE_MINUS primary .
 
     $default  reduce using rule 68 (factor)
 
 
-state 122
+State 122
 
    48 expression: expression TOKEN_TYPE_OR . andexp
 
@@ -1764,7 +1764,7 @@ state 122
     funccall         go to state 87
 
 
-state 123
+State 123
 
    50 andexp: andexp TOKEN_TYPE_AND . relexp
 
@@ -1786,49 +1786,49 @@ state 123
     funccall         go to state 87
 
 
-state 124
+State 124
 
    55 rel_op: TOKEN_TYPE_LESS .
 
     $default  reduce using rule 55 (rel_op)
 
 
-state 125
+State 125
 
    57 rel_op: TOKEN_TYPE_LESS_EQUAL .
 
     $default  reduce using rule 57 (rel_op)
 
 
-state 126
+State 126
 
    58 rel_op: TOKEN_TYPE_EQUAL .
 
     $default  reduce using rule 58 (rel_op)
 
 
-state 127
+State 127
 
    59 rel_op: TOKEN_TYPE_NOT_EQUAL .
 
     $default  reduce using rule 59 (rel_op)
 
 
-state 128
+State 128
 
    54 rel_op: TOKEN_TYPE_GREATER .
 
     $default  reduce using rule 54 (rel_op)
 
 
-state 129
+State 129
 
    56 rel_op: TOKEN_TYPE_GREATER_EQUAL .
 
     $default  reduce using rule 56 (rel_op)
 
 
-state 130
+State 130
 
    60 aritexp: aritexp TOKEN_TYPE_PLUS . term
 
@@ -1848,7 +1848,7 @@ state 130
     funccall         go to state 87
 
 
-state 131
+State 131
 
    61 aritexp: aritexp TOKEN_TYPE_MINUS . term
 
@@ -1868,7 +1868,7 @@ state 131
     funccall         go to state 87
 
 
-state 132
+State 132
 
    52 relexp: aritexp rel_op . aritexp
 
@@ -1889,7 +1889,7 @@ state 132
     funccall         go to state 87
 
 
-state 133
+State 133
 
    63 term: term TOKEN_TYPE_ASTERISK . factor
 
@@ -1908,7 +1908,7 @@ state 133
     funccall         go to state 87
 
 
-state 134
+State 134
 
    65 term: term TOKEN_TYPE_MOD . factor
 
@@ -1927,7 +1927,7 @@ state 134
     funccall         go to state 87
 
 
-state 135
+State 135
 
    64 term: term TOKEN_TYPE_SLASH . factor
 
@@ -1946,21 +1946,21 @@ state 135
     funccall         go to state 87
 
 
-state 136
+State 136
 
    16 vardecl_list: vardecl_list varlist TOKEN_TYPE_COLON datatype TOKEN_TYPE_SEMICOLON .
 
     $default  reduce using rule 16 (vardecl_list)
 
 
-state 137
+State 137
 
    82 actualpar: TOKEN_TYPE_LEFT_BRACKET TOKEN_TYPE_RIGHT_BRACKET .
 
     $default  reduce using rule 82 (actualpar)
 
 
-state 138
+State 138
 
    48 expression: expression . TOKEN_TYPE_OR andexp
    85 parameter: expression .
@@ -1970,7 +1970,7 @@ state 138
     $default  reduce using rule 85 (parameter)
 
 
-state 139
+State 139
 
    81 actualpar: TOKEN_TYPE_LEFT_BRACKET parameters_list . TOKEN_TYPE_RIGHT_BRACKET
    83 parameters_list: parameters_list . TOKEN_TYPE_COMMA parameter
@@ -1979,21 +1979,21 @@ state 139
     TOKEN_TYPE_RIGHT_BRACKET  shift, and go to state 175
 
 
-state 140
+State 140
 
    84 parameters_list: parameter .
 
     $default  reduce using rule 84 (parameters_list)
 
 
-state 141
+State 141
 
     1 module: TOKEN_TYPE_MODULE module_create_scope TOKEN_TYPE_SEMICOLON declarations TOKEN_TYPE_BEGIN statements TOKEN_TYPE_END module_remove_scope TOKEN_TYPE_FULL_STOP .
 
     $default  reduce using rule 1 (module)
 
 
-state 142
+State 142
 
    95 conditional: TOKEN_TYPE_IF expression TOKEN_TYPE_THEN . statements elseif_opt_list TOKEN_TYPE_END
 
@@ -2002,7 +2002,7 @@ state 142
     statements  go to state 176
 
 
-state 143
+State 143
 
    45 statements: statements . statement TOKEN_TYPE_SEMICOLON
    47           | statements . statement
@@ -2034,7 +2034,7 @@ state 143
     io_statement     go to state 61
 
 
-state 144
+State 144
 
   101 repetition: TOKEN_TYPE_WHILE expression TOKEN_TYPE_DO . statements TOKEN_TYPE_END
 
@@ -2043,7 +2043,7 @@ state 144
     statements  go to state 180
 
 
-state 145
+State 145
 
    45 statements: statements . statement TOKEN_TYPE_SEMICOLON
    47           | statements . statement
@@ -2071,7 +2071,7 @@ state 145
     io_statement     go to state 61
 
 
-state 146
+State 146
 
   102 repetition: TOKEN_TYPE_REPEAT statements TOKEN_TYPE_UNTIL . expression
 
@@ -2095,7 +2095,7 @@ state 146
     funccall         go to state 87
 
 
-state 147
+State 147
 
   103 repetition: TOKEN_TYPE_FOR assignment TOKEN_TYPE_TO . expression TOKEN_TYPE_DO statements TOKEN_TYPE_END
   106           | TOKEN_TYPE_FOR assignment TOKEN_TYPE_TO . expression statements TOKEN_TYPE_END
@@ -2120,7 +2120,7 @@ state 147
     funccall         go to state 87
 
 
-state 148
+State 148
 
    48 expression: expression . TOKEN_TYPE_OR andexp
   105 repetition: TOKEN_TYPE_FOR assignment expression . TOKEN_TYPE_DO statements TOKEN_TYPE_END
@@ -2129,49 +2129,49 @@ state 148
     TOKEN_TYPE_OR  shift, and go to state 122
 
 
-state 149
+State 149
 
   113 io_parameter: TOKEN_TYPE_STRING_LITERAL .
 
     $default  reduce using rule 113 (io_parameter)
 
 
-state 150
+State 150
 
   112 io_parameter: parameter .
 
     $default  reduce using rule 112 (io_parameter)
 
 
-state 151
+State 151
 
   107 io_statement: TOKEN_TYPE_WRITE TOKEN_TYPE_LEFT_BRACKET io_parameter . TOKEN_TYPE_RIGHT_BRACKET
 
     TOKEN_TYPE_RIGHT_BRACKET  shift, and go to state 185
 
 
-state 152
+State 152
 
   109 io_statement: TOKEN_TYPE_WRITELN TOKEN_TYPE_LEFT_BRACKET TOKEN_TYPE_RIGHT_BRACKET .
 
     $default  reduce using rule 109 (io_statement)
 
 
-state 153
+State 153
 
   110 io_statement: TOKEN_TYPE_WRITELN TOKEN_TYPE_LEFT_BRACKET io_parameter . TOKEN_TYPE_RIGHT_BRACKET
 
     TOKEN_TYPE_RIGHT_BRACKET  shift, and go to state 186
 
 
-state 154
+State 154
 
   111 io_statement: TOKEN_TYPE_READ TOKEN_TYPE_LEFT_BRACKET checkIdentifier . TOKEN_TYPE_RIGHT_BRACKET
 
     TOKEN_TYPE_RIGHT_BRACKET  shift, and go to state 187
 
 
-state 155
+State 155
 
    48 expression: expression . TOKEN_TYPE_OR andexp
    94 assignment: checkIdentifier TOKEN_TYPE_ASSIGN expression .
@@ -2181,14 +2181,14 @@ state 155
     $default  reduce using rule 94 (assignment)
 
 
-state 156
+State 156
 
    37 formalpars: TOKEN_TYPE_LEFT_BRACKET fpardecl_opt_list TOKEN_TYPE_RIGHT_BRACKET .
 
     $default  reduce using rule 37 (formalpars)
 
 
-state 157
+State 157
 
    40 fpardecl_list: fpardecl_list TOKEN_TYPE_SEMICOLON . fparlist TOKEN_TYPE_COLON datatype
 
@@ -2198,7 +2198,7 @@ state 157
     fpar_addinfo  go to state 109
 
 
-state 158
+State 158
 
    41 fpardecl_list: fparlist TOKEN_TYPE_COLON . datatype
 
@@ -2208,7 +2208,7 @@ state 158
     datatype  go to state 189
 
 
-state 159
+State 159
 
    42 fparlist: fparlist TOKEN_TYPE_COMMA . fpar_addinfo
 
@@ -2217,7 +2217,7 @@ state 159
     fpar_addinfo  go to state 190
 
 
-state 160
+State 160
 
    27 procheader: TOKEN_TYPE_FUNCTION funcheader_create_scope formalpars TOKEN_TYPE_COLON datatype . TOKEN_TYPE_SEMICOLON
    29           | TOKEN_TYPE_FUNCTION funcheader_create_scope formalpars TOKEN_TYPE_COLON datatype .
@@ -2227,14 +2227,14 @@ state 160
     $default  reduce using rule 29 (procheader)
 
 
-state 161
+State 161
 
    36 procbody_remove_scope: TOKEN_TYPE_IDENTIFIER .
 
     $default  reduce using rule 36 (procbody_remove_scope)
 
 
-state 162
+State 162
 
    34 procbody: TOKEN_TYPE_BEGIN statements TOKEN_TYPE_END procbody_remove_scope . TOKEN_TYPE_SEMICOLON
    35         | TOKEN_TYPE_BEGIN statements TOKEN_TYPE_END procbody_remove_scope .
@@ -2244,7 +2244,7 @@ state 162
     $default  reduce using rule 35 (procbody)
 
 
-state 163
+State 163
 
    33 procbody: vardecl TOKEN_TYPE_BEGIN statements TOKEN_TYPE_END . procbody_remove_scope TOKEN_TYPE_SEMICOLON
 
@@ -2253,7 +2253,7 @@ state 163
     procbody_remove_scope  go to state 193
 
 
-state 164
+State 164
 
    12 constlist: constlist TOKEN_TYPE_COMMA const_addinfo TOKEN_TYPE_ASSIGN expression .
    48 expression: expression . TOKEN_TYPE_OR andexp
@@ -2263,14 +2263,14 @@ state 164
     $default  reduce using rule 12 (constlist)
 
 
-state 165
+State 165
 
    71 primary: TOKEN_TYPE_LEFT_BRACKET expression TOKEN_TYPE_RIGHT_BRACKET .
 
     $default  reduce using rule 71 (primary)
 
 
-state 166
+State 166
 
    48 expression: expression TOKEN_TYPE_OR andexp .
    50 andexp: andexp . TOKEN_TYPE_AND relexp
@@ -2281,14 +2281,14 @@ state 166
     $default        reduce using rule 48 (expression)
 
 
-state 167
+State 167
 
    50 andexp: andexp TOKEN_TYPE_AND relexp .
 
     $default  reduce using rule 50 (andexp)
 
 
-state 168
+State 168
 
    60 aritexp: aritexp TOKEN_TYPE_PLUS term .
    63 term: term . TOKEN_TYPE_ASTERISK factor
@@ -2305,7 +2305,7 @@ state 168
     $default             reduce using rule 60 (aritexp)
 
 
-state 169
+State 169
 
    61 aritexp: aritexp TOKEN_TYPE_MINUS term .
    63 term: term . TOKEN_TYPE_ASTERISK factor
@@ -2322,7 +2322,7 @@ state 169
     $default             reduce using rule 61 (aritexp)
 
 
-state 170
+State 170
 
    52 relexp: aritexp rel_op aritexp .
    60 aritexp: aritexp . TOKEN_TYPE_PLUS term
@@ -2336,28 +2336,28 @@ state 170
     $default          reduce using rule 52 (relexp)
 
 
-state 171
+State 171
 
    63 term: term TOKEN_TYPE_ASTERISK factor .
 
     $default  reduce using rule 63 (term)
 
 
-state 172
+State 172
 
    65 term: term TOKEN_TYPE_MOD factor .
 
     $default  reduce using rule 65 (term)
 
 
-state 173
+State 173
 
    64 term: term TOKEN_TYPE_SLASH factor .
 
     $default  reduce using rule 64 (term)
 
 
-state 174
+State 174
 
    83 parameters_list: parameters_list TOKEN_TYPE_COMMA . parameter
 
@@ -2382,14 +2382,14 @@ state 174
     parameter        go to state 194
 
 
-state 175
+State 175
 
    81 actualpar: TOKEN_TYPE_LEFT_BRACKET parameters_list TOKEN_TYPE_RIGHT_BRACKET .
 
     $default  reduce using rule 81 (actualpar)
 
 
-state 176
+State 176
 
    45 statements: statements . statement TOKEN_TYPE_SEMICOLON
    47           | statements . statement
@@ -2421,7 +2421,7 @@ state 176
     io_statement     go to state 61
 
 
-state 177
+State 177
 
    97 elseif_opt_list: TOKEN_TYPE_ELSIF . expression TOKEN_TYPE_THEN statements elseif_opt_list
   100                | TOKEN_TYPE_ELSIF . expression statements elseif_opt_list
@@ -2446,7 +2446,7 @@ state 177
     funccall         go to state 87
 
 
-state 178
+State 178
 
    98 elseif_opt_list: TOKEN_TYPE_ELSE . statements
 
@@ -2455,14 +2455,14 @@ state 178
     statements  go to state 197
 
 
-state 179
+State 179
 
    96 conditional: TOKEN_TYPE_IF expression statements elseif_opt_list . TOKEN_TYPE_END
 
     TOKEN_TYPE_END  shift, and go to state 198
 
 
-state 180
+State 180
 
    45 statements: statements . statement TOKEN_TYPE_SEMICOLON
    47           | statements . statement
@@ -2490,14 +2490,14 @@ state 180
     io_statement     go to state 61
 
 
-state 181
+State 181
 
   104 repetition: TOKEN_TYPE_WHILE expression statements TOKEN_TYPE_END .
 
     $default  reduce using rule 104 (repetition)
 
 
-state 182
+State 182
 
    48 expression: expression . TOKEN_TYPE_OR andexp
   102 repetition: TOKEN_TYPE_REPEAT statements TOKEN_TYPE_UNTIL expression .
@@ -2507,7 +2507,7 @@ state 182
     $default  reduce using rule 102 (repetition)
 
 
-state 183
+State 183
 
    48 expression: expression . TOKEN_TYPE_OR andexp
   103 repetition: TOKEN_TYPE_FOR assignment TOKEN_TYPE_TO expression . TOKEN_TYPE_DO statements TOKEN_TYPE_END
@@ -2521,7 +2521,7 @@ state 183
     statements  go to state 201
 
 
-state 184
+State 184
 
   105 repetition: TOKEN_TYPE_FOR assignment expression TOKEN_TYPE_DO . statements TOKEN_TYPE_END
 
@@ -2530,28 +2530,28 @@ state 184
     statements  go to state 202
 
 
-state 185
+State 185
 
   107 io_statement: TOKEN_TYPE_WRITE TOKEN_TYPE_LEFT_BRACKET io_parameter TOKEN_TYPE_RIGHT_BRACKET .
 
     $default  reduce using rule 107 (io_statement)
 
 
-state 186
+State 186
 
   110 io_statement: TOKEN_TYPE_WRITELN TOKEN_TYPE_LEFT_BRACKET io_parameter TOKEN_TYPE_RIGHT_BRACKET .
 
     $default  reduce using rule 110 (io_statement)
 
 
-state 187
+State 187
 
   111 io_statement: TOKEN_TYPE_READ TOKEN_TYPE_LEFT_BRACKET checkIdentifier TOKEN_TYPE_RIGHT_BRACKET .
 
     $default  reduce using rule 111 (io_statement)
 
 
-state 188
+State 188
 
    40 fpardecl_list: fpardecl_list TOKEN_TYPE_SEMICOLON fparlist . TOKEN_TYPE_COLON datatype
    42 fparlist: fparlist . TOKEN_TYPE_COMMA fpar_addinfo
@@ -2560,56 +2560,56 @@ state 188
     TOKEN_TYPE_COMMA  shift, and go to state 159
 
 
-state 189
+State 189
 
    41 fpardecl_list: fparlist TOKEN_TYPE_COLON datatype .
 
     $default  reduce using rule 41 (fpardecl_list)
 
 
-state 190
+State 190
 
    42 fparlist: fparlist TOKEN_TYPE_COMMA fpar_addinfo .
 
     $default  reduce using rule 42 (fparlist)
 
 
-state 191
+State 191
 
    27 procheader: TOKEN_TYPE_FUNCTION funcheader_create_scope formalpars TOKEN_TYPE_COLON datatype TOKEN_TYPE_SEMICOLON .
 
     $default  reduce using rule 27 (procheader)
 
 
-state 192
+State 192
 
    34 procbody: TOKEN_TYPE_BEGIN statements TOKEN_TYPE_END procbody_remove_scope TOKEN_TYPE_SEMICOLON .
 
     $default  reduce using rule 34 (procbody)
 
 
-state 193
+State 193
 
    33 procbody: vardecl TOKEN_TYPE_BEGIN statements TOKEN_TYPE_END procbody_remove_scope . TOKEN_TYPE_SEMICOLON
 
     TOKEN_TYPE_SEMICOLON  shift, and go to state 204
 
 
-state 194
+State 194
 
    83 parameters_list: parameters_list TOKEN_TYPE_COMMA parameter .
 
     $default  reduce using rule 83 (parameters_list)
 
 
-state 195
+State 195
 
    95 conditional: TOKEN_TYPE_IF expression TOKEN_TYPE_THEN statements elseif_opt_list . TOKEN_TYPE_END
 
     TOKEN_TYPE_END  shift, and go to state 205
 
 
-state 196
+State 196
 
    48 expression: expression . TOKEN_TYPE_OR andexp
    97 elseif_opt_list: TOKEN_TYPE_ELSIF expression . TOKEN_TYPE_THEN statements elseif_opt_list
@@ -2623,7 +2623,7 @@ state 196
     statements  go to state 207
 
 
-state 197
+State 197
 
    45 statements: statements . statement TOKEN_TYPE_SEMICOLON
    47           | statements . statement
@@ -2652,21 +2652,21 @@ state 197
     io_statement     go to state 61
 
 
-state 198
+State 198
 
    96 conditional: TOKEN_TYPE_IF expression statements elseif_opt_list TOKEN_TYPE_END .
 
     $default  reduce using rule 96 (conditional)
 
 
-state 199
+State 199
 
   101 repetition: TOKEN_TYPE_WHILE expression TOKEN_TYPE_DO statements TOKEN_TYPE_END .
 
     $default  reduce using rule 101 (repetition)
 
 
-state 200
+State 200
 
   103 repetition: TOKEN_TYPE_FOR assignment TOKEN_TYPE_TO expression TOKEN_TYPE_DO . statements TOKEN_TYPE_END
 
@@ -2675,7 +2675,7 @@ state 200
     statements  go to state 208
 
 
-state 201
+State 201
 
    45 statements: statements . statement TOKEN_TYPE_SEMICOLON
    47           | statements . statement
@@ -2703,7 +2703,7 @@ state 201
     io_statement     go to state 61
 
 
-state 202
+State 202
 
    45 statements: statements . statement TOKEN_TYPE_SEMICOLON
    47           | statements . statement
@@ -2731,7 +2731,7 @@ state 202
     io_statement     go to state 61
 
 
-state 203
+State 203
 
    40 fpardecl_list: fpardecl_list TOKEN_TYPE_SEMICOLON fparlist TOKEN_TYPE_COLON . datatype
 
@@ -2741,21 +2741,21 @@ state 203
     datatype  go to state 211
 
 
-state 204
+State 204
 
    33 procbody: vardecl TOKEN_TYPE_BEGIN statements TOKEN_TYPE_END procbody_remove_scope TOKEN_TYPE_SEMICOLON .
 
     $default  reduce using rule 33 (procbody)
 
 
-state 205
+State 205
 
    95 conditional: TOKEN_TYPE_IF expression TOKEN_TYPE_THEN statements elseif_opt_list TOKEN_TYPE_END .
 
     $default  reduce using rule 95 (conditional)
 
 
-state 206
+State 206
 
    97 elseif_opt_list: TOKEN_TYPE_ELSIF expression TOKEN_TYPE_THEN . statements elseif_opt_list
 
@@ -2764,7 +2764,7 @@ state 206
     statements  go to state 212
 
 
-state 207
+State 207
 
    45 statements: statements . statement TOKEN_TYPE_SEMICOLON
    47           | statements . statement
@@ -2796,7 +2796,7 @@ state 207
     io_statement     go to state 61
 
 
-state 208
+State 208
 
    45 statements: statements . statement TOKEN_TYPE_SEMICOLON
    47           | statements . statement
@@ -2824,28 +2824,28 @@ state 208
     io_statement     go to state 61
 
 
-state 209
+State 209
 
   106 repetition: TOKEN_TYPE_FOR assignment TOKEN_TYPE_TO expression statements TOKEN_TYPE_END .
 
     $default  reduce using rule 106 (repetition)
 
 
-state 210
+State 210
 
   105 repetition: TOKEN_TYPE_FOR assignment expression TOKEN_TYPE_DO statements TOKEN_TYPE_END .
 
     $default  reduce using rule 105 (repetition)
 
 
-state 211
+State 211
 
    40 fpardecl_list: fpardecl_list TOKEN_TYPE_SEMICOLON fparlist TOKEN_TYPE_COLON datatype .
 
     $default  reduce using rule 40 (fpardecl_list)
 
 
-state 212
+State 212
 
    45 statements: statements . statement TOKEN_TYPE_SEMICOLON
    47           | statements . statement
@@ -2877,21 +2877,21 @@ state 212
     io_statement     go to state 61
 
 
-state 213
+State 213
 
   100 elseif_opt_list: TOKEN_TYPE_ELSIF expression statements elseif_opt_list .
 
     $default  reduce using rule 100 (elseif_opt_list)
 
 
-state 214
+State 214
 
   103 repetition: TOKEN_TYPE_FOR assignment TOKEN_TYPE_TO expression TOKEN_TYPE_DO statements TOKEN_TYPE_END .
 
     $default  reduce using rule 103 (repetition)
 
 
-state 215
+State 215
 
    97 elseif_opt_list: TOKEN_TYPE_ELSIF expression TOKEN_TYPE_THEN statements elseif_opt_list .
 

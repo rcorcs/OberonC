@@ -39,7 +39,7 @@ void MIPSArchitecture::generateCode()
         BasicBlock * basicBlock = basicBlocks->at(i);
         basicBlock->optimise();
 
-        FunctionInformation * functionInfo = NULL;
+        functionInfo = NULL;
 
         if(basicBlock->isStartingFunction()) {
             //string MIPSInstruction = "\t.text ";
@@ -111,6 +111,7 @@ void MIPSArchitecture::generateCode()
         delete instructionVector;
         delete basicBlock;
     }
+    functionInfo = NULL;
 	 //gen("\tli $v0, 10"); // system call for exit
     //gen("\tsyscall");
     delete basicBlocks;
@@ -973,24 +974,27 @@ void MIPSArchitecture::genReturn(ReturnInstruction *intruction)
 
     if(args->at(1)!=NULL) {
         regs = getRegisters(intruction);
-        MIPSInstruction = "\tmovl ";
+        MIPSInstruction = "";
         if(regs->at(1) == NO_REGISTER) {
             if(args->at(1)->getInstructionArgument()->getType()==INSTRUCTION_ARGUMENT_TYPE_IMMEDIATE) {
+		MIPSInstruction = "\tli $v0, ";
                 ImmediateArgument * immediateArgument = (ImmediateArgument*)args->at(1)->getInstructionArgument();
                 MIPSInstruction += getMachineImmediate(immediateArgument->getImmediateValue());
             } else if(args->at(1)->getInstructionArgument()->getType()==INSTRUCTION_ARGUMENT_TYPE_IDENTIFIER) {
+		MIPSInstruction = "\tlw $v0, ";
                 IdentifierArgument * identifierArgument = (IdentifierArgument*)args->at(1)->getInstructionArgument();
                 MIPSInstruction += getVariableAddress(identifierArgument->getIdentifierInformation());
             }
         } else {
+            MIPSInstruction = "\tmove $v0, ";
             MIPSInstruction += getRegister(regs->at(1));
         }
-        MIPSInstruction += ", %eax";
+        //MIPSInstruction += ", %eax";
         gen(MIPSInstruction);
     }
     //removeGlobalVariablesFromRegisters();
     //removeVariablesFromRegisters();
-    genEpilogue(0);
+    genEpilogue(functionInfo);
     //gen("\tleave");
     //gen("\tret");
 }
@@ -1198,11 +1202,11 @@ void MIPSArchitecture::genCall(CallInstruction * callInstruction)
     //popRegisters();
 
     if(callInstruction->getDestinationArgument()) {
-        MIPSInstruction = "\tmovl %eax, ";
+        MIPSInstruction = "";//"\tmove %eax, ";
         if(regs->at(0) == NO_REGISTER) {
 
           // NAO DEVERIA SER CHAMADO!!! =0
-                        cout << args->at(0)->getInstructionArgument()->getType() << endl;
+                        cout << "ERROR (genCall): " << args->at(0)->getInstructionArgument()->getType() << endl;
 
 //            if(args->at(0)->getInstructionArgument()->getType()==INSTRUCTION_ARGUMENT_TYPE_IMMEDIATE) {
 //                ImmediateArgument * immediateArgument = (ImmediateArgument*)args->at(0)->getInstructionArgument();
@@ -1217,7 +1221,9 @@ void MIPSArchitecture::genCall(CallInstruction * callInstruction)
 //
 //            }
         } else {
+            MIPSInstruction = "\tmove ";
             MIPSInstruction += getRegister(regs->at(0));
+            MIPSInstruction += ", $v0";
         }
         gen(MIPSInstruction);
         cout << MIPSInstruction << endl;
@@ -1558,11 +1564,11 @@ void MIPSArchitecture::genWrite(int registerNumber)
 	 string MIPSInstruction = "\tli $v0, 1"; // system call code for printing integer = 1
     gen(MIPSInstruction);
 
-    MIPSInstruction = "\taddi $a0, $zero, "; // move from register the integer to be printed into $a0
+    MIPSInstruction = "\tmove $a0, "; // move from register the integer to be printed into $a0
     MIPSInstruction += getRegister(registerNumber);
     gen(MIPSInstruction);
 
-    gen("\tsystemcall");
+    gen("\tsyscall");
 }
 
 void MIPSArchitecture::genWrite(ImmediateArgument * immediateArgument)
@@ -1570,18 +1576,14 @@ void MIPSArchitecture::genWrite(ImmediateArgument * immediateArgument)
 
     long value =   immediateArgument->getImmediateValue();
 
-    char temp[64];
-    
-	 string MIPSInstruction = "\tli $v0, 1"; // system call code for printing integer = 1
+    string MIPSInstruction = "\tli $v0, 1"; // system call code for printing integer = 1
     gen(MIPSInstruction);
-
-    sprintf(temp, "$%d", value);
 
     MIPSInstruction = "\taddi $a0, $zero, "; // move the integer to be printed into $a0
-    MIPSInstruction += temp;
+    MIPSInstruction += getMachineImmediate(value);
     gen(MIPSInstruction);
 
-    gen("\tsystemcall");
+    gen("\tsyscall");
 }
 
 void MIPSArchitecture::genRead(IdentifierInformation *identifierInformation)
@@ -1637,7 +1639,7 @@ string MIPSArchitecture::getMachineImmediate(long immediate)
     char temp[64];
     //string MIPSImmediate = "$";
     //MIPSImmediate += itoa(immediate, temp, 10);
-    sprintf(temp, "%d", immediate);
+    sprintf(temp, "%d", (int)immediate);
     string MIPSImmediate = temp;
     return MIPSImmediate;
 
@@ -1713,7 +1715,12 @@ int MIPSArchitecture::getTotalRegisters()
 
 string MIPSArchitecture::getFunctionLabel(IdentifierInformation * functionInfo)
 {
-    string functionLabel = "__";
+    string functionLabel;
+    if(!strcmp(functionInfo->getIdentifier(),"main")){
+	functionLabel = "";
+    }else{
+        functionLabel = "__";
+    }
     functionLabel += functionInfo->getIdentifier();
     return functionLabel;
 }
@@ -1721,7 +1728,8 @@ string MIPSArchitecture::getFunctionLabel(IdentifierInformation * functionInfo)
 string MIPSArchitecture::getFunctionLabel(string functionName)
 {
     string functionLabel;
-    if(functionName=="main"){
+    if(!strcmp(functionName.c_str(),"main")){
+	functionLabel = "";
     }else{
         functionLabel = "__";
     }
@@ -1794,8 +1802,11 @@ void MIPSArchitecture::genEpilogue(FunctionInformation * functionInfo)
     }
     
     //gen("\tleave");
-	 
-    gen("\tjr $ra");
+    if(functionInfo==NULL){// || !strcmp(functionInfo->getIdentifier(), intermediateCode_->getMainFunctionName())){
+       gen("\tli $v0, 10"); // system call for exit
+       gen("\tsyscall");
+    }else 
+       gen("\tjr $ra");
 
 }
 

@@ -154,7 +154,10 @@ private:
 
     void updateVariablesStatus(Instruction * instruction);
     void allocateArithmeticInstructionRegisters(Instruction * instruction,  vector<int> * regs);
+
+
     vector<string> registers_;
+    FunctionInformation * functionInfo = NULL;
 };
 
 
