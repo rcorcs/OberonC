@@ -1,8 +1,6 @@
-/************************************************************************************************************************/
-/** A Compiler for a subset of Oberon                                                **/
-/** authors:                                                                                                           **/
-/**   ROCHA, Rodrigo Caetano de Oliveira (rcor)                                    **/
-/************************************************************************************************************************/
+/// A Compiler for a subset of Oberon
+/// authors:
+/// ROCHA, Rodrigo Caetano de Oliveira (rcor)
 
 #include "mips_architecture.h"
 
@@ -997,14 +995,11 @@ void MIPSArchitecture::genReturn(ReturnInstruction *intruction)
             MIPSInstruction = "\tmove $v0, ";
             MIPSInstruction += getRegister(regs->at(1));
         }
-        //MIPSInstruction += ", %eax";
         gen(MIPSInstruction);
     }
     //removeGlobalVariablesFromRegisters();
     //removeVariablesFromRegisters();
     genEpilogue(functionInfo);
-    //gen("\tleave");
-    //gen("\tret");
 }
 
 void MIPSArchitecture::genGoto(GotoInstruction *instruction)
@@ -1056,7 +1051,6 @@ void MIPSArchitecture::genConditionalGoto(ConditionalGotoInstruction *instructio
             IdentifierArgument * identifierArgument = (IdentifierArgument*)args->at(1)->getInstructionArgument();
 				IdentifierInformation *identifierInformation = identifierArgument->getIdentifierInformation();
 					 if(identifierInformation->getScopeLevel()==GLOBAL_SCOPE) {
-						  //movl	$_a, 4(%esp)
 						  string MIPSInstruction = "\tla $t8, ";
 						  MIPSInstruction += getGlobalVariableLabel(identifierInformation);
 						  gen(MIPSInstruction);
@@ -1087,7 +1081,6 @@ void MIPSArchitecture::genConditionalGoto(ConditionalGotoInstruction *instructio
             IdentifierArgument * identifierArgument = (IdentifierArgument*)args->at(2)->getInstructionArgument();
 					IdentifierInformation *identifierInformation = identifierArgument->getIdentifierInformation();
 					 if(identifierInformation->getScopeLevel()==GLOBAL_SCOPE) {
-						  //movl	$_a, 4(%esp)
 						  string MIPSInstruction = "\tla $t9, ";
 						  MIPSInstruction += getGlobalVariableLabel(identifierInformation);
 						  gen(MIPSInstruction);
@@ -1160,17 +1153,11 @@ void MIPSArchitecture::genNop(NopInstruction *instruction)
 
 void MIPSArchitecture::genParam(ParameterInstruction * paramInstruction)
 {
-    
-    //gen("\tpushl %ebp");
-    //gen("\tmovl %esp, %ebp");
-
     vector<int> * regs  = getRegisters(paramInstruction);
     vector<ArgumentInformation *> *args = paramInstruction->getArgumentsInformation();
     string MIPSInstruction;
 
 
-    // src2 register
-    //MIPSInstruction = "\tpushl ";
     MIPSInstruction = "\taddi $sp, $sp, -";
     MIPSInstruction += getMachineImmediate(WORD_SIZE);
     gen(MIPSInstruction);
@@ -1196,7 +1183,6 @@ void MIPSArchitecture::genParam(ParameterInstruction * paramInstruction)
         MIPSInstruction += ", 0($sp)";
         gen(MIPSInstruction);
     }
-    //gen(MIPSInstruction);
 }
 
 
@@ -1214,8 +1200,6 @@ void MIPSArchitecture::genCall(CallInstruction * callInstruction)
         args = callInstruction->getArgumentsInformation();
         dstIdentifierInfo = this->getInfoFromArgument(args->at(0)->getInstructionArgument());
     }
-    //gen("\tpushl $0");
-    //gen("pushl %eip");
 
     //saveGlobalVariables();
 
@@ -1229,7 +1213,7 @@ void MIPSArchitecture::genCall(CallInstruction * callInstruction)
     //popRegisters();
 
     if(callInstruction->getDestinationArgument()) {
-        MIPSInstruction = "";//"\tmove %eax, ";
+        MIPSInstruction = "";
         if(regs->at(0) == NO_REGISTER) {
 
           // NAO DEVERIA SER CHAMADO!!! =0
@@ -1345,9 +1329,6 @@ void MIPSArchitecture::pushRegisters()
     string MIPSInstruction;
     for(int reg = 0; reg<getTotalRegisters(); reg++) {
         if(!getRegisterDescriptor(reg)->getVariablesList()->empty()) {
-            //MIPSInstruction = "\tpushl ";
-            //MIPSInstruction += getRegister(reg);
-
 	    //addi $sp, $sp, -4  # Decrement stack pointer by 4
             //sw   $r3, 0($sp)
             MIPSInstruction = "\taddi $sp, $sp, -";
@@ -1810,9 +1791,6 @@ void MIPSArchitecture::genPrologue(FunctionInformation * functionInfo)
 {
     stringstream sstream;
 
-    //gen("\tpushl %ebp");
-    //gen("\tmovl %esp, %ebp");
-
     if(functionInfo) {
         size_t variablesCount = functionInfo->getVariableList().size() * WORD_SIZE;
 
@@ -1838,7 +1816,6 @@ void MIPSArchitecture::genEpilogue(FunctionInformation * functionInfo)
         }
     }
     
-    //gen("\tleave");
     if(functionInfo==NULL){// || !strcmp(functionInfo->getIdentifier(), intermediateCode_->getMainFunctionName())){
        gen("\tli $v0, 10"); // system call for exit
        gen("\tsyscall");

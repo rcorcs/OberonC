@@ -1,8 +1,6 @@
-/************************************************************************************************************************/
-/** A Compiler for a subset of Oberon                                  **/
-/** authors:                                                                                                           **/
-/**   ROCHA, Rodrigo Caetano de Oliveira (rcor)     **/
-/************************************************************************************************************************/
+/// A Compiler for a subset of Oberon
+/// authors:
+/// ROCHA, Rodrigo Caetano de Oliveira (rcor)
 
 #ifndef ARCHITECTURE_MIPS_H
 #define ARCHITECTURE_MIPS_H
